@@ -66,7 +66,7 @@ public class Vendas implements Serializable {
     private List<Notas> notasList;
     @JoinColumn(name = "ClienteID", referencedColumnName = "ClienteID")
     @ManyToOne
-    private Clientes clienteID;
+    private Cliente clienteID;
     @JoinColumn(name = "FuncionarioID", referencedColumnName = "FuncionarioID")
     @ManyToOne
     private Funcionarios funcionarioID;
@@ -135,11 +135,11 @@ public class Vendas implements Serializable {
         this.notasList = notasList;
     }
 
-    public Clientes getClienteID() {
+    public Cliente getClienteID() {
         return clienteID;
     }
 
-    public void setClienteID(Clientes clienteID) {
+    public void setClienteID(Cliente clienteID) {
         this.clienteID = clienteID;
     }
 
