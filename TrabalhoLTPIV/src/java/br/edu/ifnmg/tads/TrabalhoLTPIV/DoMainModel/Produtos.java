@@ -36,12 +36,12 @@ public class Produtos implements Serializable {
     private Double valorcompra;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(name = "TipoProduto")
-    private Tiposproduto tipoproduto;
+    private Tipoproduto tipoproduto;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(name = "LinhaProduto")
     private Linhasproduto linhaproduto;
     
-    public Produtos(Double valorvenda, Double valorcompra,Tiposproduto tipoproduto,Linhasproduto linhaproduto){
+    public Produtos(Double valorvenda, Double valorcompra,Tipoproduto tipoproduto,Linhasproduto linhaproduto){
         this.valorvenda = valorvenda;
         this.valorcompra = valorcompra;
         this.tipoproduto = tipoproduto;
@@ -88,11 +88,11 @@ public class Produtos implements Serializable {
         this.valorcompra = valorcompra;
     }
 
-    public Tiposproduto getTipoproduto() {
+    public Tipoproduto getTipoproduto() {
         return tipoproduto;
     }
 
-    public void setTipoproduto(Tiposproduto tipoproduto) {
+    public void setTipoproduto(Tipoproduto tipoproduto) {
         this.tipoproduto = tipoproduto;
     }
 
