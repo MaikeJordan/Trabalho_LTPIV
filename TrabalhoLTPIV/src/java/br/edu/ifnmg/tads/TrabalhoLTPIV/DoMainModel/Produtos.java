@@ -7,94 +7,61 @@
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Desktop
+ * @author Mauro
  */
 @Entity
-@Table(name = "produtos")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Produtos.findAll", query = "SELECT p FROM Produtos p"),
-    @NamedQuery(name = "Produtos.findByProdutoID", query = "SELECT p FROM Produtos p WHERE p.produtoID = :produtoID"),
-    @NamedQuery(name = "Produtos.findByNome", query = "SELECT p FROM Produtos p WHERE p.nome = :nome"),
-    @NamedQuery(name = "Produtos.findByValorVenda", query = "SELECT p FROM Produtos p WHERE p.valorVenda = :valorVenda"),
-    @NamedQuery(name = "Produtos.findByValorCompra", query = "SELECT p FROM Produtos p WHERE p.valorCompra = :valorCompra")})
 public class Produtos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ProdutoID")
-    private Integer produtoID;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
-    @Column(name = "Nome")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
+    @Column(name = "Nome", length = 255)
     private String nome;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ValorVenda")
-    private double valorVenda;
-    @Basic(optional = false)
-    @NotNull
+    private Double valorvenda;
     @Column(name = "ValorCompra")
-    private double valorCompra;
-    @JoinColumn(name = "LinhaProdutoId", referencedColumnName = "LinhaProdutoID")
-    @ManyToOne
-    private Linhasproduto linhaProdutoId;
-    @JoinColumn(name = "TipoProdutoId", referencedColumnName = "TipoProdutoID")
-    @ManyToOne
-    private Tiposproduto tipoProdutoId;
-    @OneToMany(mappedBy = "produtoID")
-    private List<Itensvenda> itensvendaList;
-    @OneToMany(mappedBy = "produtoID")
-    private List<Itenscompra> itenscompraList;
-    @OneToMany(mappedBy = "produtoID")
-    private List<Tabelaspreco> tabelasprecoList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "produtos")
-    private Estoques estoques;
-
-    public Produtos() {
+    private Double valorcompra;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(name = "TipoProduto")
+    private Tiposproduto tipoproduto;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(name = "LinhaProduto")
+    private Linhasproduto linhaproduto;
+    
+    public Produtos(Double valorvenda, Double valorcompra,Tiposproduto tipoproduto,Linhasproduto linhaproduto){
+        this.valorvenda = valorvenda;
+        this.valorcompra = valorcompra;
+        this.tipoproduto = tipoproduto;
+        this.linhaproduto = linhaproduto;
+    }
+    
+    
+    public Produtos(){
+        this.valorvenda = null;
+        this.valorcompra = null;
+        this.tipoproduto = null;
+        this.linhaproduto = null;
+    }
+    
+    public Long getId() {
+        return id;
     }
 
-    public Produtos(Integer produtoID) {
-        this.produtoID = produtoID;
-    }
-
-    public Produtos(Integer produtoID, String nome, double valorVenda, double valorCompra) {
-        this.produtoID = produtoID;
-        this.nome = nome;
-        this.valorVenda = valorVenda;
-        this.valorCompra = valorCompra;
-    }
-
-    public Integer getProdutoID() {
-        return produtoID;
-    }
-
-    public void setProdutoID(Integer produtoID) {
-        this.produtoID = produtoID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -105,88 +72,75 @@ public class Produtos implements Serializable {
         this.nome = nome;
     }
 
-    public double getValorVenda() {
-        return valorVenda;
+    public Double getValorvenda() {
+        return valorvenda;
     }
 
-    public void setValorVenda(double valorVenda) {
-        this.valorVenda = valorVenda;
+    public void setValorvenda(Double valorvenda) {
+        this.valorvenda = valorvenda;
     }
 
-    public double getValorCompra() {
-        return valorCompra;
+    public Double getValorcompra() {
+        return valorcompra;
     }
 
-    public void setValorCompra(double valorCompra) {
-        this.valorCompra = valorCompra;
+    public void setValorcompra(Double valorcompra) {
+        this.valorcompra = valorcompra;
     }
 
-    public Linhasproduto getLinhaProdutoId() {
-        return linhaProdutoId;
+    public Tiposproduto getTipoproduto() {
+        return tipoproduto;
     }
 
-    public void setLinhaProdutoId(Linhasproduto linhaProdutoId) {
-        this.linhaProdutoId = linhaProdutoId;
+    public void setTipoproduto(Tiposproduto tipoproduto) {
+        this.tipoproduto = tipoproduto;
     }
 
-    public Tiposproduto getTipoProdutoId() {
-        return tipoProdutoId;
+    public Linhasproduto getLinhaproduto() {
+        return linhaproduto;
     }
 
-    public void setTipoProdutoId(Tiposproduto tipoProdutoId) {
-        this.tipoProdutoId = tipoProdutoId;
-    }
-
-    @XmlTransient
-    public List<Itensvenda> getItensvendaList() {
-        return itensvendaList;
-    }
-
-    public void setItensvendaList(List<Itensvenda> itensvendaList) {
-        this.itensvendaList = itensvendaList;
-    }
-
-    @XmlTransient
-    public List<Itenscompra> getItenscompraList() {
-        return itenscompraList;
-    }
-
-    public void setItenscompraList(List<Itenscompra> itenscompraList) {
-        this.itenscompraList = itenscompraList;
-    }
-
-    @XmlTransient
-    public List<Tabelaspreco> getTabelasprecoList() {
-        return tabelasprecoList;
-    }
-
-    public void setTabelasprecoList(List<Tabelaspreco> tabelasprecoList) {
-        this.tabelasprecoList = tabelasprecoList;
-    }
-
-    public Estoques getEstoques() {
-        return estoques;
-    }
-
-    public void setEstoques(Estoques estoques) {
-        this.estoques = estoques;
+    public void setLinhaproduto(Linhasproduto linhaproduto) {
+        this.linhaproduto = linhaproduto;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (produtoID != null ? produtoID.hashCode() : 0);
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.nome);
+        hash = 83 * hash + Objects.hashCode(this.valorvenda);
+        hash = 83 * hash + Objects.hashCode(this.valorcompra);
+        hash = 83 * hash + Objects.hashCode(this.tipoproduto);
+        hash = 83 * hash + Objects.hashCode(this.linhaproduto);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Produtos)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Produtos other = (Produtos) object;
-        if ((this.produtoID == null && other.produtoID != null) || (this.produtoID != null && !this.produtoID.equals(other.produtoID))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Produtos other = (Produtos) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorvenda, other.valorvenda)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorcompra, other.valorcompra)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipoproduto, other.tipoproduto)) {
+            return false;
+        }
+        if (!Objects.equals(this.linhaproduto, other.linhaproduto)) {
             return false;
         }
         return true;
@@ -194,7 +148,8 @@ public class Produtos implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Produtos[ produtoID=" + produtoID + " ]";
+        return "Produtos{" + "id=" + id + '}';
     }
+
     
 }

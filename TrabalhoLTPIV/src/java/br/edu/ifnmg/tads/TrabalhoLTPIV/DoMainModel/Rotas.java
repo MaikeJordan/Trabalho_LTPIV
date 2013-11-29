@@ -7,72 +7,44 @@
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.OneToOne;
 
 /**
  *
- * @author Desktop
+ * @author Mauro
  */
 @Entity
-@Table(name = "rotas")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Rotas.findAll", query = "SELECT r FROM Rotas r"),
-    @NamedQuery(name = "Rotas.findByRotaID", query = "SELECT r FROM Rotas r WHERE r.rotaID = :rotaID"),
-    @NamedQuery(name = "Rotas.findByDistancia", query = "SELECT r FROM Rotas r WHERE r.distancia = :distancia")})
 public class Rotas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "RotaID")
-    private Integer rotaID;
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     @Column(name = "Distancia")
     private int distancia;
-    @JoinColumn(name = "CidadeDestinoID", referencedColumnName = "CidadeID")
-    @ManyToOne
-    private Cidades cidadeDestinoID;
-    @JoinColumn(name = "CidadeOrigemID", referencedColumnName = "CidadeID")
-    @ManyToOne
-    private Cidades cidadeOrigemID;
-    @OneToMany(mappedBy = "rotaID")
-    private List<Entregas> entregasList;
-
-    public Rotas() {
-    }
-
-    public Rotas(Integer rotaID) {
-        this.rotaID = rotaID;
-    }
-
-    public Rotas(Integer rotaID, int distancia) {
-        this.rotaID = rotaID;
+    @OneToOne
+    @Column(name = "CidadeOrigem")
+    private Cidades cidadeorigem;
+    @OneToOne
+    @Column(name = "CidadeDestino")
+    private Cidades cidadedestino;
+    
+    public Rotas(int distancia,Cidades cidadeorigem,Cidades cidadedestino ){
         this.distancia = distancia;
+        this.cidadeorigem = cidadeorigem;
+        this.cidadedestino = cidadedestino;
     }
-
-    public Integer getRotaID() {
-        return rotaID;
-    }
-
-    public void setRotaID(Integer rotaID) {
-        this.rotaID = rotaID;
+    public Rotas(){
+        this.distancia = 0;
+        this.cidadeorigem = null;
+        this.cidadedestino = null;
+        
     }
 
     public int getDistancia() {
@@ -83,54 +55,72 @@ public class Rotas implements Serializable {
         this.distancia = distancia;
     }
 
-    public Cidades getCidadeDestinoID() {
-        return cidadeDestinoID;
+    public Cidades getCidadeorigem() {
+        return cidadeorigem;
     }
 
-    public void setCidadeDestinoID(Cidades cidadeDestinoID) {
-        this.cidadeDestinoID = cidadeDestinoID;
+    public void setCidadeorigem(Cidades cidadeorigem) {
+        this.cidadeorigem = cidadeorigem;
     }
 
-    public Cidades getCidadeOrigemID() {
-        return cidadeOrigemID;
+    public Cidades getCidadedestino() {
+        return cidadedestino;
     }
 
-    public void setCidadeOrigemID(Cidades cidadeOrigemID) {
-        this.cidadeOrigemID = cidadeOrigemID;
+    public void setCidadedestino(Cidades cidadedestino) {
+        this.cidadedestino = cidadedestino;
+    }
+    
+    public Long getId() {
+        return id;
     }
 
-    @XmlTransient
-    public List<Entregas> getEntregasList() {
-        return entregasList;
-    }
-
-    public void setEntregasList(List<Entregas> entregasList) {
-        this.entregasList = entregasList;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (rotaID != null ? rotaID.hashCode() : 0);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + this.distancia;
+        hash = 79 * hash + Objects.hashCode(this.cidadeorigem);
+        hash = 79 * hash + Objects.hashCode(this.cidadedestino);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rotas)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Rotas other = (Rotas) object;
-        if ((this.rotaID == null && other.rotaID != null) || (this.rotaID != null && !this.rotaID.equals(other.rotaID))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Rotas other = (Rotas) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.distancia != other.distancia) {
+            return false;
+        }
+        if (!Objects.equals(this.cidadeorigem, other.cidadeorigem)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidadedestino, other.cidadedestino)) {
             return false;
         }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Rotas[ rotaID=" + rotaID + " ]";
+        return "Rotass{" + "id=" + id + '}';
     }
+
+    
+       
+
     
 }

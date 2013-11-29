@@ -8,143 +8,143 @@ package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Desktop
+ * @author Mauro
  */
 @Entity
-@Table(name = "tabelaspreco")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Tabelaspreco.findAll", query = "SELECT t FROM Tabelaspreco t"),
-    @NamedQuery(name = "Tabelaspreco.findByTabelaPrecoID", query = "SELECT t FROM Tabelaspreco t WHERE t.tabelaPrecoID = :tabelaPrecoID"),
-    @NamedQuery(name = "Tabelaspreco.findByPrecoSaida", query = "SELECT t FROM Tabelaspreco t WHERE t.precoSaida = :precoSaida"),
-    @NamedQuery(name = "Tabelaspreco.findByPrecoEntrada", query = "SELECT t FROM Tabelaspreco t WHERE t.precoEntrada = :precoEntrada"),
-    @NamedQuery(name = "Tabelaspreco.findByDataCadastro", query = "SELECT t FROM Tabelaspreco t WHERE t.dataCadastro = :dataCadastro"),
-    @NamedQuery(name = "Tabelaspreco.findByDataModificacao", query = "SELECT t FROM Tabelaspreco t WHERE t.dataModificacao = :dataModificacao")})
 public class Tabelaspreco implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "TabelaPrecoID")
-    private Integer tabelaPrecoID;
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     @Column(name = "PrecoSaida")
-    private double precoSaida;
-    @Basic(optional = false)
-    @NotNull
+    private Double precosaida;
     @Column(name = "PrecoEntrada")
-    private double precoEntrada;
-    @Basic(optional = false)
-    @NotNull
+    private Double precoentrada;
+    @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "DataCadastro")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataCadastro;
-    @Basic(optional = false)
-    @NotNull
+    private Date datacadastro;
+    @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "DataModificacao")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataModificacao;
-    @JoinColumn(name = "ProdutoID", referencedColumnName = "ProdutoID")
-    @ManyToOne
-    private Produtos produtoID;
-
-    public Tabelaspreco() {
+    private Date datamodificacao;
+    @OneToOne
+    @Column(name = "Produto")
+    private Produtos produto;
+    
+    
+    public Tabelaspreco(Double precosaida, Double precoentrada, Date datacadastro, Date datamodificacao, Produtos produto){
+        this.precosaida = precosaida;
+        this.precoentrada = precoentrada;
+        this.datacadastro = datacadastro;
+        this.datamodificacao = datamodificacao;
+        this.produto = produto;
+    }
+    
+    public Tabelaspreco(){
+        this.precosaida = null;
+        this.precoentrada = null;
+        this.datacadastro = new Date();
+        this.datamodificacao = new Date();
+        this.produto = new Produtos();
+    }
+    
+    
+    public Long getId() {
+        return id;
     }
 
-    public Tabelaspreco(Integer tabelaPrecoID) {
-        this.tabelaPrecoID = tabelaPrecoID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Tabelaspreco(Integer tabelaPrecoID, double precoSaida, double precoEntrada, Date dataCadastro, Date dataModificacao) {
-        this.tabelaPrecoID = tabelaPrecoID;
-        this.precoSaida = precoSaida;
-        this.precoEntrada = precoEntrada;
-        this.dataCadastro = dataCadastro;
-        this.dataModificacao = dataModificacao;
+    public Double getPrecosaida() {
+        return precosaida;
     }
 
-    public Integer getTabelaPrecoID() {
-        return tabelaPrecoID;
+    public void setPrecosaida(Double precosaida) {
+        this.precosaida = precosaida;
     }
 
-    public void setTabelaPrecoID(Integer tabelaPrecoID) {
-        this.tabelaPrecoID = tabelaPrecoID;
+    public Double getPrecoentrada() {
+        return precoentrada;
     }
 
-    public double getPrecoSaida() {
-        return precoSaida;
+    public void setPrecoentrada(Double precoentrada) {
+        this.precoentrada = precoentrada;
     }
 
-    public void setPrecoSaida(double precoSaida) {
-        this.precoSaida = precoSaida;
+    public Date getDatacadastro() {
+        return datacadastro;
     }
 
-    public double getPrecoEntrada() {
-        return precoEntrada;
+    public void setDatacadastro(Date datacadastro) {
+        this.datacadastro = datacadastro;
     }
 
-    public void setPrecoEntrada(double precoEntrada) {
-        this.precoEntrada = precoEntrada;
+    public Date getDatamodificacao() {
+        return datamodificacao;
     }
 
-    public Date getDataCadastro() {
-        return dataCadastro;
+    public void setDatamodificacao(Date datamodificacao) {
+        this.datamodificacao = datamodificacao;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public Produtos getProduto() {
+        return produto;
     }
 
-    public Date getDataModificacao() {
-        return dataModificacao;
-    }
-
-    public void setDataModificacao(Date dataModificacao) {
-        this.dataModificacao = dataModificacao;
-    }
-
-    public Produtos getProdutoID() {
-        return produtoID;
-    }
-
-    public void setProdutoID(Produtos produtoID) {
-        this.produtoID = produtoID;
+    public void setProduto(Produtos produto) {
+        this.produto = produto;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (tabelaPrecoID != null ? tabelaPrecoID.hashCode() : 0);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.precosaida);
+        hash = 67 * hash + Objects.hashCode(this.precoentrada);
+        hash = 67 * hash + Objects.hashCode(this.datacadastro);
+        hash = 67 * hash + Objects.hashCode(this.datamodificacao);
+        hash = 67 * hash + Objects.hashCode(this.produto);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tabelaspreco)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Tabelaspreco other = (Tabelaspreco) object;
-        if ((this.tabelaPrecoID == null && other.tabelaPrecoID != null) || (this.tabelaPrecoID != null && !this.tabelaPrecoID.equals(other.tabelaPrecoID))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tabelaspreco other = (Tabelaspreco) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.precosaida, other.precosaida)) {
+            return false;
+        }
+        if (!Objects.equals(this.precoentrada, other.precoentrada)) {
+            return false;
+        }
+        if (!Objects.equals(this.datacadastro, other.datacadastro)) {
+            return false;
+        }
+        if (!Objects.equals(this.datamodificacao, other.datamodificacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.produto, other.produto)) {
             return false;
         }
         return true;
@@ -152,7 +152,7 @@ public class Tabelaspreco implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Tabelaspreco[ tabelaPrecoID=" + tabelaPrecoID + " ]";
+        return "Tabelaspreco{" + "id=" + id + '}';
     }
-    
+
 }
