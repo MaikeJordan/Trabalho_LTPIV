@@ -30,10 +30,10 @@ public class Nota implements Serializable {
 
     @Column(name = "Vendaid")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-    private Vendas vendaid;
+    private Venda vendaid;
     
     
-    public Nota(Vendas vendaid){
+    public Nota(Venda vendaid){
         this.vendaid = vendaid;
     }
     
@@ -49,11 +49,11 @@ public class Nota implements Serializable {
         this.id = id;
     }
 
-    public Vendas getVendaid() {
+    public Venda getVendaid() {
         return vendaid;
     }
 
-    public void setVendaid(Vendas vendaid) {
+    public void setVendaid(Venda vendaid) {
         this.vendaid = vendaid;
     }
 

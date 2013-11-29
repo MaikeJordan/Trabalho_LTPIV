@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -29,9 +30,9 @@ public class Funcionario extends Pessoa implements Serializable {
    
     @Column(name="TipoFuncionario")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-    private Tiposfuncionario tipo;
+    private TipoFuncionario tipo;
 
-    public Funcionario(Pessoa pessoa, Tiposfuncionario tipo) {
+    public Funcionario(Pessoa pessoa, TipoFuncionario tipo) {
         this.pessoa = pessoa;
         this.tipo = tipo;
     }
@@ -49,11 +50,11 @@ public class Funcionario extends Pessoa implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public Tiposfuncionario getTipo() {
+    public TipoFuncionario getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tiposfuncionario tipo) {
+    public void setTipo(TipoFuncionario tipo) {
         this.tipo = tipo;
     }
 
