@@ -6,10 +6,13 @@
 
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
+import javax.ejb.Remote;
+
 /**
  *
  * @author Mauro
  */
+@Remote
 public interface ICidadesRepositorio extends IRepositorio<Cidades>{
     
 }
