@@ -44,7 +44,14 @@ public class CompraDAO extends DAOGenerico<Compra> implements ICompraRepositorio
                 parametros.put("data", obj.getData());
             }
             
-   
+            //Id
+            if (obj.getCompraid() != null && obj.getCompraid() > 0) {
+                if (filtro.length() > 0) {
+                    filtro = filtro + " and ";
+                }
+                filtro += " c.id =:id";
+                parametros.put("id", obj.getCompraid());
+            }
             // Se houver filtros, coloca o "where" na consulta
             if (filtro.length() > 0) {
                 consulta = consulta + " where " + filtro;
