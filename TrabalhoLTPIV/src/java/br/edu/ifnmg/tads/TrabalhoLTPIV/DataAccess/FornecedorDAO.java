@@ -24,7 +24,7 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> implements IFornecedo
         super(Fornecedor.class);
     }
     
-      @Override
+    @Override
     public List<Fornecedor> Buscar(Fornecedor obj) {
         // Corpo da consulta
         String consulta = "select f from fornecedor f";
