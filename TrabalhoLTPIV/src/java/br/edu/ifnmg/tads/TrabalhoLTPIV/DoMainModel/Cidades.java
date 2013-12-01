@@ -32,7 +32,8 @@ public class Cidades implements Serializable {
     public Cidades(){
         this.nome = "";
         this.uf = "";
-    }    public Long getId() {
+    }    
+    public Long getId() {
         return id;
     }
 
