@@ -71,5 +71,9 @@ public class Cliente extends Pessoa implements Serializable {
     public String toString() {
         return this.getNome();
     }
+
+    public Object getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
