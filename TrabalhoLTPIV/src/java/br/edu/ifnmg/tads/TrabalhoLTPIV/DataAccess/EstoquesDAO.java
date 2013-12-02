@@ -75,7 +75,7 @@ public class EstoquesDAO extends DAOGenerico<Estoques> implements IEstoquesRepos
     @Override
     public boolean Apagar(Estoques obj) {
        try {
-            Query query = manager.createQuery("Update estoque e set e.ativo = 0 WHERE e.id :=id");
+            Query query = manager.createQuery("Update estoque s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getEstoqueID());
             query.executeUpdate();
 
