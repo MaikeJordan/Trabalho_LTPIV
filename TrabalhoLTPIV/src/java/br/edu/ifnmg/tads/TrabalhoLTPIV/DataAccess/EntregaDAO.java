@@ -73,7 +73,7 @@ public class EntregaDAO extends DAOGenerico<Entrega> implements IEntregaReposito
     @Override
     public boolean Apagar(Entrega obj) {
        try {
-            Query query = manager.createQuery("Update entrega e set e.ativo = 0 WHERE e.id :=id");
+            Query query = manager.createQuery("Update entrega s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getEntregaid());
             query.executeUpdate();
 
