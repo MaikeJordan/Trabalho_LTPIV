@@ -74,7 +74,7 @@ public class CompraDAO extends DAOGenerico<Compra> implements ICompraRepositorio
     @Override
     public boolean Apagar(Compra obj) {
        try {
-            Query query = manager.createQuery("Update compra c set c.ativo = 0 WHERE c.id :=id");
+            Query query = manager.createQuery("Update compra s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getCompraid());
             query.executeUpdate();
 
