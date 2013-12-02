@@ -95,7 +95,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioReposito
     @Override
     public boolean Apagar(Usuario obj) {
        try {
-            Query query = manager.createQuery("Update usuario u set u.ativo = 0 WHERE u.id :=id");
+            Query query = manager.createQuery("Update usuario s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getFuncionario());
             query.executeUpdate();
 
