@@ -13,8 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -30,8 +29,7 @@ public class ItemVenda implements Serializable {
     @Column(name = "Quantidade")
     private int quantidade;
   
-    @JoinColumn(name = "ProdutoID", referencedColumnName = "ProdutoID")
-    @ManyToOne
+    @OneToOne
     private Produtos produtoID;
 
     public ItemVenda(Long ItemVendaid, int quantidade, Produtos produtoID) {

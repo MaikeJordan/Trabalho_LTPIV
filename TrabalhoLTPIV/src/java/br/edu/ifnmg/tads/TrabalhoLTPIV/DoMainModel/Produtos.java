@@ -26,19 +26,21 @@ public class Produtos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ProdutoID;
     
     @Column(name = "Nome", length = 255)
     private String nome;
+    
     @Column(name = "ValorVenda")
     private Double valorvenda;
+    
     @Column(name = "ValorCompra")
     private Double valorcompra;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Column(name = "TipoProduto")
+    
+    @ManyToOne
     private Tipoproduto tipoproduto;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Column(name = "LinhaProduto")
+    
+    @ManyToOne
     private Linhasproduto linhaproduto;
     
     public Produtos(Double valorvenda, Double valorcompra,Tipoproduto tipoproduto,Linhasproduto linhaproduto){
@@ -56,12 +58,12 @@ public class Produtos implements Serializable {
         this.linhaproduto = null;
     }
     
-    public Long getId() {
-        return id;
+    public Long getProdutoID() {
+        return ProdutoID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProdutoID(Long ProdutoID) {
+        this.ProdutoID = ProdutoID;
     }
 
     public String getNome() {
@@ -107,7 +109,7 @@ public class Produtos implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.ProdutoID);
         hash = 83 * hash + Objects.hashCode(this.nome);
         hash = 83 * hash + Objects.hashCode(this.valorvenda);
         hash = 83 * hash + Objects.hashCode(this.valorcompra);
@@ -125,7 +127,7 @@ public class Produtos implements Serializable {
             return false;
         }
         final Produtos other = (Produtos) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.ProdutoID, other.ProdutoID)) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -148,7 +150,7 @@ public class Produtos implements Serializable {
 
     @Override
     public String toString() {
-        return "Produtos{" + "id=" + id + '}';
+        return "Produtos{" + "id=" + ProdutoID + '}';
     }
 
     

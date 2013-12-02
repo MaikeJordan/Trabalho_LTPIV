@@ -25,7 +25,6 @@ public class TipoFuncionario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long TipoFuncionarioid;
     
-    
     @Column(name="nome", length = 255)
     private String nome;
     

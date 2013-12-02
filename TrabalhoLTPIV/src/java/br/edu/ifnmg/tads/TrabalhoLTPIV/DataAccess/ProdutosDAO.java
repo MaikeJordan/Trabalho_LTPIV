@@ -55,12 +55,12 @@ public class ProdutosDAO extends DAOGenerico<Produtos> implements IProdutosRepos
                 parametros.put("nome", obj.getLinhaproduto().getNome());
             }
             //Id
-            if (obj.getId() != null && obj.getId() > 0) {
+            if (obj.getProdutoID() != null && obj.getProdutoID() > 0) {
                 if (filtro.length() > 0) {
                     filtro = filtro + " and ";
                 }
                 filtro += " p.id =:id";
-                parametros.put("id", obj.getId());
+                parametros.put("id", obj.getProdutoID());
             }
    
             // Se houver filtros, coloca o "where" na consulta
@@ -86,7 +86,7 @@ public class ProdutosDAO extends DAOGenerico<Produtos> implements IProdutosRepos
     public boolean Apagar(Produtos obj) {
        try {
             Query query = manager.createQuery("Update produto s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getId());
+            query.setParameter("id", obj.getProdutoID());
             query.executeUpdate();
 
             return true;

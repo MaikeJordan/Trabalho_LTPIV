@@ -8,13 +8,12 @@ package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -22,11 +21,12 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 public class Usuario implements Serializable {
-   
+    private static final long serialVersionUID = 1L;
     @Id
-    @Column(name="usuarioid")
-    @PrimaryKeyJoinColumn
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Usuarioid;
+    
+    @OneToOne
     private Funcionario funcionario;
     
     @Column(name="login", length = 20)
@@ -35,18 +35,28 @@ public class Usuario implements Serializable {
     @Column(name="senha", length = 20)
     private String senha;
 
-    public Usuario(Funcionario funcionario, String login, String cpf) {
+    public Usuario(Long Usuarioid, Funcionario funcionario, String login, String senha) {
+        this.Usuarioid = Usuarioid;
         this.funcionario = funcionario;
         this.login = login;
-        this.senha = cpf;
+        this.senha = senha;
     }
     
     public Usuario() {
+        this.Usuarioid = null;
         this.funcionario = null;
         this.login = "";
         this.senha = "";
     }
-    
+
+    public Long getUsuarioid() {
+        return Usuarioid;
+    }
+
+    public void setUsuarioid(Long Usuarioid) {
+        this.Usuarioid = Usuarioid;
+    }
+
     public Funcionario getFuncionario() {
         return funcionario;
     }
@@ -74,9 +84,10 @@ public class Usuario implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.funcionario);
-        hash = 71 * hash + Objects.hashCode(this.login);
-        hash = 71 * hash + Objects.hashCode(this.senha);
+        hash = 47 * hash + Objects.hashCode(this.Usuarioid);
+        hash = 47 * hash + Objects.hashCode(this.funcionario);
+        hash = 47 * hash + Objects.hashCode(this.login);
+        hash = 47 * hash + Objects.hashCode(this.senha);
         return hash;
     }
 
@@ -89,6 +100,9 @@ public class Usuario implements Serializable {
             return false;
         }
         final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.Usuarioid, other.Usuarioid)) {
+            return false;
+        }
         if (!Objects.equals(this.funcionario, other.funcionario)) {
             return false;
         }

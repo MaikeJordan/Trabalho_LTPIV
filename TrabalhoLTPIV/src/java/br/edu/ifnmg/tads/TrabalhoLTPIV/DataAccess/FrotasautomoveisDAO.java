@@ -6,7 +6,7 @@
 
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DataAccess;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Frotasautomoveis;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.FrotaAutomovel;
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IFrotasautomoveisRepositorio;
 import java.util.HashMap;
 import java.util.List;
@@ -18,14 +18,14 @@ import javax.persistence.Query;
  * @author Mauro
  */
 @Stateless(name = "IfrotasautomoveisRepositorio")
-public class FrotasautomoveisDAO extends DAOGenerico<Frotasautomoveis> implements IFrotasautomoveisRepositorio{
+public class FrotasautomoveisDAO extends DAOGenerico<FrotaAutomovel> implements IFrotasautomoveisRepositorio{
     
     public FrotasautomoveisDAO(){
-        super(Frotasautomoveis.class);
+        super(FrotaAutomovel.class);
     }
     
     @Override
-    public List<Frotasautomoveis> Buscar(Frotasautomoveis obj) {
+    public List<FrotaAutomovel> Buscar(FrotaAutomovel obj) {
        // Corpo da consulta
         String consulta = "select f from frotasautomoveis f";
 
@@ -43,12 +43,12 @@ public class FrotasautomoveisDAO extends DAOGenerico<Frotasautomoveis> implement
                 parametros.put("nome", obj.getNome());
             }
             //Id
-            if (obj.getId() != null && obj.getId() > 0) {
+            if (obj.getFrotaAutomevelid() != null && obj.getFrotaAutomevelid() > 0) {
                 if (filtro.length() > 0) {
                     filtro = filtro + " and ";
                 }
                 filtro += " f.id like id";
-                parametros.put("id", obj.getId());
+                parametros.put("id", obj.getFrotaAutomevelid());
             }
             
 
@@ -72,11 +72,11 @@ public class FrotasautomoveisDAO extends DAOGenerico<Frotasautomoveis> implement
     }
 
     @Override
-    public boolean Apagar(Frotasautomoveis obj) {
+    public boolean Apagar(FrotaAutomovel obj) {
          try {
 
             Query query = manager.createQuery("Update frotasautomoveis s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getId());
+            query.setParameter("id", obj.getFrotaAutomevelid());
             query.executeUpdate();
 
             return true;

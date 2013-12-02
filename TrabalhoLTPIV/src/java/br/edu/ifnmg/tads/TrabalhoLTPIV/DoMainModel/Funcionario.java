@@ -8,13 +8,9 @@ package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,32 +18,16 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 public class Funcionario extends Pessoa implements Serializable {
-   
-    @Column(name="Funcionarioid")
-    @PrimaryKeyJoinColumn
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-    private Pessoa pessoa;
-   
-    @Column(name="TipoFuncionario")
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+    
+    @ManyToOne
     private TipoFuncionario tipo;
 
-    public Funcionario(Pessoa pessoa, TipoFuncionario tipo) {
-        this.pessoa = pessoa;
-        this.tipo = tipo;
-    }
-    
     public Funcionario() {
-        this.pessoa = null;
         this.tipo = null;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public Funcionario(TipoFuncionario tipo) {
+        this.tipo = tipo;
     }
 
     public TipoFuncionario getTipo() {
@@ -60,9 +40,8 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.pessoa);
-        hash = 83 * hash + Objects.hashCode(this.tipo);
+        int hash = 5;
+        hash = 73 * hash + Objects.hashCode(this.tipo);
         return hash;
     }
 
@@ -75,9 +54,6 @@ public class Funcionario extends Pessoa implements Serializable {
             return false;
         }
         final Funcionario other = (Funcionario) obj;
-        if (!Objects.equals(this.pessoa, other.pessoa)) {
-            return false;
-        }
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
@@ -86,7 +62,8 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "pessoa=" + pessoa + ", tipo=" + tipo + '}';
+        return this.getNome();
     }
- 
+
+    
 }

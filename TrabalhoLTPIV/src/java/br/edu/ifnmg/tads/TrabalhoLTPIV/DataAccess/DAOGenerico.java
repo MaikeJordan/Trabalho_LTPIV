@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 public abstract class DAOGenerico<T> implements IRepositorio<T>{
     
-    @PersistenceContext(name="RNdistribuidoraUP")
+    @PersistenceContext(name="trabalholtpiv")
     protected EntityManager manager;
     private Class tipo;
     public DAOGenerico (Class t) {

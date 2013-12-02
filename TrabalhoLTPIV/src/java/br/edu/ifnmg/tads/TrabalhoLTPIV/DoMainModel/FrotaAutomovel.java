@@ -19,33 +19,34 @@ import javax.persistence.Id;
  * @author Mauro
  */
 @Entity
-public class Frotasautomoveis implements Serializable {
+public class FrotaAutomovel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long FrotaAutomevelid;
     
     @Column(name = "Nome",length = 255)
     private String nome;
+    
     @Column(name = "Descricao", length = 255)
     private String descricao;
     
-    public Frotasautomoveis(String nome, String descricao){
+    public FrotaAutomovel(String nome, String descricao){
         this.nome = nome;
         this.descricao = descricao;
     }
     
-    public Frotasautomoveis(){
+    public FrotaAutomovel(){
         this.nome = "";
         this.descricao = "";
     }
     
-    public Long getId() {
-        return id;
+    public Long getFrotaAutomevelid() {
+        return FrotaAutomevelid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFrotaAutomevelid(Long FrotaAutomevelid) {
+        this.FrotaAutomevelid = FrotaAutomevelid;
     }
 
     public String getNome() {
@@ -67,7 +68,7 @@ public class Frotasautomoveis implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.FrotaAutomevelid);
         hash = 23 * hash + Objects.hashCode(this.nome);
         hash = 23 * hash + Objects.hashCode(this.descricao);
         return hash;
@@ -81,8 +82,8 @@ public class Frotasautomoveis implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Frotasautomoveis other = (Frotasautomoveis) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        final FrotaAutomovel other = (FrotaAutomovel) obj;
+        if (!Objects.equals(this.FrotaAutomevelid, other.FrotaAutomevelid)) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -96,7 +97,7 @@ public class Frotasautomoveis implements Serializable {
 
     @Override
     public String toString() {
-        return "Frotasautomoveis{" + "id=" + id + '}';
+        return "Frotasautomoveis{" + "id=" + FrotaAutomevelid + '}';
     }
 
     

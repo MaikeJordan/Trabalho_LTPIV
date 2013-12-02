@@ -50,8 +50,7 @@ public class Endereco implements Serializable {
     @Column(name="complemento", length=255)
     private String complemento;
     
-    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
-    @JoinColumn(name="pessoaid")
+    @ManyToOne
     private Pessoa pessoa;
 
     public Endereco(Long Enderecoid, String rua, int numero, String bairro, String cidade, String estado, String CEP, String complemento, Pessoa pessoa) {

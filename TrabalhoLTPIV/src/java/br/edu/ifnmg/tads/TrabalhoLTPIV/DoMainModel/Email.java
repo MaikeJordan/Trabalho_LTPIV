@@ -32,8 +32,7 @@ public class Email implements Serializable {
     @Column(name="endereco", length=255)
     private String endereco;
     
-    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
-    @JoinColumn(name="pessoaid")
+    @ManyToOne
     private Pessoa pessoa;
 
     public Email(Long Emailid, String endereco, Pessoa pessoa) {

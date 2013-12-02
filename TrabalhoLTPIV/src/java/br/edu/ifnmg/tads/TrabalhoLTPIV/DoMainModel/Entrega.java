@@ -37,23 +37,19 @@ public class Entrega implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     
-    @JoinColumn(name = "NotaID", referencedColumnName = "NotaID")
     @ManyToOne
     private Nota notaID;
     
-    @JoinColumn(name = "FrotaAutomovelID", referencedColumnName = "FrotaAutomovelID")
     @ManyToOne
-    private Frotasautomoveis frotaAutomovelID;
+    private FrotaAutomovel frotaAutomovelID;
     
-    @JoinColumn(name = "RotaID", referencedColumnName = "RotaID")
     @ManyToOne
     private Rotas rotaID;
     
-    @JoinColumn(name = "FuncionarioID", referencedColumnName = "FuncionarioID")
     @ManyToOne
     private Funcionario funcionarioID;
 
-    public Entrega(Long Entregaid, Date data, Nota notaID, Frotasautomoveis frotaAutomovelID, Rotas rotaID, Funcionario funcionarioID) {
+    public Entrega(Long Entregaid, Date data, Nota notaID, FrotaAutomovel frotaAutomovelID, Rotas rotaID, Funcionario funcionarioID) {
         this.Entregaid = Entregaid;
         this.data = data;
         this.notaID = notaID;
@@ -95,11 +91,11 @@ public class Entrega implements Serializable {
         this.notaID = notaID;
     }
 
-    public Frotasautomoveis getFrotaAutomovelID() {
+    public FrotaAutomovel getFrotaAutomovelID() {
         return frotaAutomovelID;
     }
 
-    public void setFrotaAutomovelID(Frotasautomoveis frotaAutomovelID) {
+    public void setFrotaAutomovelID(FrotaAutomovel frotaAutomovelID) {
         this.frotaAutomovelID = frotaAutomovelID;
     }
 

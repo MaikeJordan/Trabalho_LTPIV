@@ -10,14 +10,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -47,16 +44,13 @@ public class Venda implements Serializable {
     @Column(name = "Operacao")
     private int operacao;
     
-    @JoinColumn(name = "ItemVendaid", referencedColumnName = "ItenVendaid")
-    @OneToMany(mappedBy = "vendaID")
+    @OneToMany
     private List<ItemVenda> Itens;
     
-    @JoinColumn(name = "ClienteID", referencedColumnName = "ClienteID")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     private Cliente clienteID;
     
-    @JoinColumn(name = "FuncionarioID", referencedColumnName = "FuncionarioID")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     private Funcionario funcionarioID;
 
     public Venda(Long Vendaid, Date data, double valorTotal, int operacao, List<ItemVenda> itensvendaList, Cliente clienteID, Funcionario funcionarioID) {

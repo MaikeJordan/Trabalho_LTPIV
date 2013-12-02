@@ -29,10 +29,8 @@ public class Rotas implements Serializable {
     @Column(name = "Distancia")
     private int distancia;
     @OneToOne
-    @Column(name = "CidadeOrigem")
     private Cidades cidadeorigem;
     @OneToOne
-    @Column(name = "CidadeDestino")
     private Cidades cidadedestino;
     
     public Rotas(int distancia,Cidades cidadeorigem,Cidades cidadedestino ){

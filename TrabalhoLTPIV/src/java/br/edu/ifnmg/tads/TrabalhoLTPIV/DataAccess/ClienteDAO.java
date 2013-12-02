@@ -80,7 +80,7 @@ public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteReposito
     public boolean Apagar(Cliente obj) {
        try {
             Query query = manager.createQuery("Update cliente s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getId());
+            query.setParameter("id", obj.getPessoaid());
             query.executeUpdate();
 
             return true;

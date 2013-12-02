@@ -39,7 +39,6 @@ public class Tabelaspreco implements Serializable {
     @Column(name = "DataModificacao")
     private Date datamodificacao;
     @OneToOne
-    @Column(name = "Produto")
     private Produtos produto;
     
     

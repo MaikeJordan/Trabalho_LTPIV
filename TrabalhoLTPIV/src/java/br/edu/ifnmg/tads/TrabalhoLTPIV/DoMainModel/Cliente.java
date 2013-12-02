@@ -8,12 +8,8 @@ package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -21,20 +17,16 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 public class Cliente extends Pessoa implements Serializable {
-    
-    @PrimaryKeyJoinColumn
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-    private Pessoa pessoa;
-    
+  
     @Column(name = "tipo", length = 50)
     private String tipo;
-    
-    public Cliente(String tipo){
-        this.tipo = tipo;
-    }
-    
-    public Cliente(){
+
+    public Cliente() {
         this.tipo = "";
+    }
+
+    public Cliente(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getTipo() {
@@ -47,7 +39,7 @@ public class Cliente extends Pessoa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         hash = 41 * hash + Objects.hashCode(this.tipo);
         return hash;
     }
@@ -66,14 +58,12 @@ public class Cliente extends Pessoa implements Serializable {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
         return this.getNome();
     }
-
-    public Object getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
     
 }

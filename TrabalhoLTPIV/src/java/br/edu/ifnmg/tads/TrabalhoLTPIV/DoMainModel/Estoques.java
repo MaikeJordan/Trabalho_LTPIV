@@ -25,10 +25,11 @@ public class Estoques implements Serializable {
     @Id
     @Column(name = "EstoqueID")
     private Integer estoqueID;
+    
     @Column(name = "Quantidade")
     private int quantidade;
-    @JoinColumn(name = "EstoqueID", referencedColumnName = "ProdutoID", insertable = false, updatable = false)
-    @OneToOne(optional = false)
+
+    @OneToOne
     private Produtos produtos;
 
     

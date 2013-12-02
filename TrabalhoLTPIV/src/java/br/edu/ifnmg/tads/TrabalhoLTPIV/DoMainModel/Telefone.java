@@ -35,8 +35,7 @@ public class Telefone implements Serializable {
     @Column(name="ddd", length=255)
     private String ddd;
     
-    @ManyToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
-    @JoinColumn(name="pessoaid")
+    @ManyToOne
     private Pessoa pessoa;
 
     public Telefone(Long Telefoneid, String numero, String ddd, Pessoa pessoa) {

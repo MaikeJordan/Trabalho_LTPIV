@@ -15,7 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -45,14 +44,12 @@ public class Compra implements Serializable {
     @Column(name = "Operacao")
     private Integer operacao;
     
-    @OneToMany(mappedBy = "compraID")
+    @OneToMany
     private List<ItemCompra> Itens;
     
-    @JoinColumn(name = "FornecedorID", referencedColumnName = "FornecedorID")
     @ManyToOne
     private Fornecedor fornecedorID;
     
-    @JoinColumn(name = "FuncionarioID", referencedColumnName = "FuncionarioID")
     @ManyToOne
     private Funcionario funcionarioID;
 
