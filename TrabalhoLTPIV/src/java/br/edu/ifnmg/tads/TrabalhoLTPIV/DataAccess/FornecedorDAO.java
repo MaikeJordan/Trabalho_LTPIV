@@ -74,7 +74,7 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> implements IFornecedo
     @Override
     public boolean Apagar(Fornecedor obj) {
        try {
-            Query query = manager.createQuery("Update fornecedor f set f.ativo = 0 WHERE f.id :=id");
+            Query query = manager.createQuery("Update fornecedor s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getId());
             query.executeUpdate();
 
