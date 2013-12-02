@@ -6,7 +6,7 @@
 
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DataAccess;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Compra;
+
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IVendaRepositorio;
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Venda;
 import java.util.HashMap;
@@ -74,7 +74,7 @@ public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio{
     @Override
     public boolean Apagar(Venda obj) {
        try {
-            Query query = manager.createQuery("Update venda v set v.ativo = 0 WHERE v.id :=id");
+            Query query = manager.createQuery("Update venda s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getVendaid());
             query.executeUpdate();
 
