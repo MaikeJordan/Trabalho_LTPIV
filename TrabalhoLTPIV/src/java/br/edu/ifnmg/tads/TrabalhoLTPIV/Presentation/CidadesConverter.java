@@ -10,18 +10,18 @@ import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Cidades;
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ICidadesRepositorio;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.persistence.Converter;
+import javax.faces.convert.Converter;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Mauro
  */
 @Named(value = "cidadesConverter")
-@ViewScoped
+@SessionScoped
 public class CidadesConverter implements Serializable, Converter{
 
     /**
@@ -53,3 +53,5 @@ public class CidadesConverter implements Serializable, Converter{
         } 
     }
 }
+
+  
