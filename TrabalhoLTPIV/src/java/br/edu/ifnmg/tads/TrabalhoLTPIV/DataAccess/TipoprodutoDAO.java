@@ -39,16 +39,15 @@ public class TipoprodutoDAO extends DAOGenerico<TipoProduto> implements ITipoPro
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " t.nome=:nome ";
-                parametros.put("nome", obj.getNome());
+                
+                 filtro += " t.nome like '%"+obj.getNome()+"%' ";
+                //parametros.put("nome", obj.getNome());
             }
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " t.id=:id ";
-                parametros.put("id", obj.getId());
+                
+                filtro += " t.id ="+obj.getId();
+                //parametros.put("id", obj.getId());
             }
             
             // Se houver filtros, coloca o "where" na consulta
