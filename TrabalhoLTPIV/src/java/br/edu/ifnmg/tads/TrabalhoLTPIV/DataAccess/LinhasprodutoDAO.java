@@ -39,16 +39,15 @@ public class LinhasprodutoDAO extends DAOGenerico<Linhasproduto> implements ILin
         if (obj != null) {
             //Nome
             if (obj.getNome()!= null && obj.getNome().length() > 0) {
-                filtro += " l.nome=:nome ";
-                parametros.put("nome", obj.getNome());
+                
+                filtro += " l.nome like '%"+obj.getNome()+"%' ";
+               // parametros.put("nome", obj.getNome());
             }
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " l.id =:id";
-                parametros.put("id", obj.getId());
+                
+                filtro += " l.id ="+obj.getId();
+                //parametros.put("id", obj.getId());
             }
    
             // Se houver filtros, coloca o "where" na consulta
