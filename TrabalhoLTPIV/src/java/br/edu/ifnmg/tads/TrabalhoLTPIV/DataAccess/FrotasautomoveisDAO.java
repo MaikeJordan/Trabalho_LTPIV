@@ -39,16 +39,15 @@ public class FrotasautomoveisDAO extends DAOGenerico<FrotaAutomovel> implements 
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " f.nome like nome ";
-                parametros.put("nome", obj.getNome());
+                
+                filtro += " f.nome like '%"+obj.getNome()+"%' ";
+               // parametros.put("nome", obj.getNome());
             }
             //Id
             if (obj.getFrotaAutomevelid() != null && obj.getFrotaAutomevelid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " f.id like id";
-                parametros.put("id", obj.getFrotaAutomevelid());
+                
+                filtro += " f.FrotaAutomovelid ="+obj.getFrotaAutomevelid();
+                //parametros.put("id", obj.getFrotaAutomevelid());
             }
             
 
@@ -75,8 +74,8 @@ public class FrotasautomoveisDAO extends DAOGenerico<FrotaAutomovel> implements 
     public boolean Apagar(FrotaAutomovel obj) {
          try {
 
-            Query query = manager.createQuery("Update frotasautomoveis s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getFrotaAutomevelid());
+            Query query = manager.createQuery("Update frotasautomoveis s set s.ativo = 0 WHERE s.FrotaAutomovelid :=FrotaAutomovelid");
+            query.setParameter("FrotaAutomovelid", obj.getFrotaAutomevelid());
             query.executeUpdate();
 
             return true;
