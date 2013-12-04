@@ -39,16 +39,15 @@ public class ItemCompraDAO extends DAOGenerico<ItemCompra> implements IItemCompr
         if (obj != null) {
             //Produto
             if (obj.getProdutoID().getNome()!= null && obj.getProdutoID().getNome().length() > 0) {
-                filtro += " c.nome=:nome ";
-                parametros.put("nome", obj.getProdutoID().getNome());
+                
+                filtro += " c.produtoID like '%"+obj.getProdutoID().getNome()+"%' ";
+                //parametros.put("nome", obj.getProdutoID().getNome());
             }
             //Id
             if (obj.getItemCompraid() != null && obj.getItemCompraid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " c.id =:id";
-                parametros.put("id", obj.getItemCompraid());
+                
+                 filtro += " c.ItemCompraid ="+obj.getItemCompraid();
+                //parametros.put("id", obj.getItemCompraid());
             }
    
             // Se houver filtros, coloca o "where" na consulta
@@ -73,8 +72,8 @@ public class ItemCompraDAO extends DAOGenerico<ItemCompra> implements IItemCompr
     @Override
     public boolean Apagar(ItemCompra obj) {
        try {
-            Query query = manager.createQuery("Update itemcompra s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getItemCompraid());
+            Query query = manager.createQuery("Update itemcompra s set s.ativo = 0 WHERE s.ItemCompraid :=ItemCompraid");
+            query.setParameter("ItemCompraid", obj.getItemCompraid());
             query.executeUpdate();
 
             return true;
