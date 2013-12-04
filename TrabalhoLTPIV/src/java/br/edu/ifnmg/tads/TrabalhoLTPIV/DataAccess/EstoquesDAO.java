@@ -47,7 +47,7 @@ public class EstoquesDAO extends DAOGenerico<Estoques> implements IEstoquesRepos
             
             
           //Id
-            if (obj.getEstoqueID() != null && obj.getEstoqueID() > 0) {
+            if (obj.getEstoqueID()!= null && obj.getEstoqueID() > 0) {
                 
                 filtro += " e.estoqueID ="+obj.getEstoqueID();
                 //parametros.put("id", obj.getEstoqueID());
