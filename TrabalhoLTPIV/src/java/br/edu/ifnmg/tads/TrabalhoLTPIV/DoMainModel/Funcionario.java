@@ -8,7 +8,6 @@ package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -21,6 +20,8 @@ public class Funcionario extends Pessoa implements Serializable {
     
     @ManyToOne
     private TipoFuncionario tipo;
+    
+    private int ativo;
 
     public Funcionario() {
         this.tipo = null;
@@ -38,10 +39,19 @@ public class Funcionario extends Pessoa implements Serializable {
         this.tipo = tipo;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + Objects.hashCode(this.tipo);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.tipo);
+        hash = 97 * hash + this.ativo;
         return hash;
     }
 
@@ -57,13 +67,17 @@ public class Funcionario extends Pessoa implements Serializable {
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return this.getNome();
+        return "Funcionario{" + "tipo=" + tipo + '}';
     }
 
+    
     
 }

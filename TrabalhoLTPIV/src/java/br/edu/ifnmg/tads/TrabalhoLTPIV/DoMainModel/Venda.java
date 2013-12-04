@@ -29,8 +29,10 @@ import javax.validation.constraints.NotNull;
 public class Venda implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Vendaid;
+    
+    private int ativo;
     
     @Column(name = "Data")
     @Temporal(TemporalType.TIMESTAMP)
@@ -140,16 +142,25 @@ public class Venda implements Serializable {
         }
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.Vendaid);
-        hash = 67 * hash + Objects.hashCode(this.data);
-        hash = 67 * hash + (int) (Double.doubleToLongBits(this.valorTotal) ^ (Double.doubleToLongBits(this.valorTotal) >>> 32));
-        hash = 67 * hash + this.operacao;
-        hash = 67 * hash + Objects.hashCode(this.Itens);
-        hash = 67 * hash + Objects.hashCode(this.clienteID);
-        hash = 67 * hash + Objects.hashCode(this.funcionarioID);
+        hash = 71 * hash + Objects.hashCode(this.Vendaid);
+        hash = 71 * hash + this.ativo;
+        hash = 71 * hash + Objects.hashCode(this.data);
+        hash = 71 * hash + (int) (Double.doubleToLongBits(this.valorTotal) ^ (Double.doubleToLongBits(this.valorTotal) >>> 32));
+        hash = 71 * hash + this.operacao;
+        hash = 71 * hash + Objects.hashCode(this.Itens);
+        hash = 71 * hash + Objects.hashCode(this.clienteID);
+        hash = 71 * hash + Objects.hashCode(this.funcionarioID);
         return hash;
     }
 
@@ -163,6 +174,9 @@ public class Venda implements Serializable {
         }
         final Venda other = (Venda) obj;
         if (!Objects.equals(this.Vendaid, other.Vendaid)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.data, other.data)) {
@@ -188,7 +202,9 @@ public class Venda implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Venda[ id=" + Vendaid + " ]";
+        return "Venda{" + "Vendaid=" + Vendaid + '}';
     }
+
+    
     
 }

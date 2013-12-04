@@ -22,8 +22,10 @@ import javax.persistence.Id;
 public class FrotaAutomovel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long FrotaAutomevelid;
+    
+    private int ativo;
     
     @Column(name = "Nome",length = 255)
     private String nome;
@@ -65,12 +67,21 @@ public class FrotaAutomovel implements Serializable {
         this.descricao = descricao;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.FrotaAutomevelid);
-        hash = 23 * hash + Objects.hashCode(this.nome);
-        hash = 23 * hash + Objects.hashCode(this.descricao);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.FrotaAutomevelid);
+        hash = 41 * hash + this.ativo;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.descricao);
         return hash;
     }
 
@@ -86,6 +97,9 @@ public class FrotaAutomovel implements Serializable {
         if (!Objects.equals(this.FrotaAutomevelid, other.FrotaAutomevelid)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -97,8 +111,9 @@ public class FrotaAutomovel implements Serializable {
 
     @Override
     public String toString() {
-        return "Frotasautomoveis{" + "id=" + FrotaAutomevelid + '}';
+        return "FrotaAutomovel{" + "nome=" + nome + '}';
     }
 
+    
     
 }

@@ -26,6 +26,8 @@ public class Estoques implements Serializable {
     @Column(name = "EstoqueID")
     private Integer estoqueID;
     
+    private int ativo;
+    
     @Column(name = "Quantidade")
     private int quantidade;
 
@@ -52,12 +54,12 @@ public class Estoques implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Integer getEstoqueID() {
-        return estoqueID;
+    public int getAtivo() {
+        return ativo;
     }
 
-    public void setEstoqueID(Integer estoqueID) {
-        this.estoqueID = estoqueID;
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
     }
 
     public int getQuantidade() {
@@ -76,12 +78,21 @@ public class Estoques implements Serializable {
         this.produtos = produtos;
     }
 
+    public Integer getEstoqueID() {
+        return estoqueID;
+    }
+
+    public void setEstoqueID(Integer estoqueID) {
+        this.estoqueID = estoqueID;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.estoqueID);
-        hash = 53 * hash + this.quantidade;
-        hash = 53 * hash + Objects.hashCode(this.produtos);
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.estoqueID);
+        hash = 41 * hash + this.ativo;
+        hash = 41 * hash + this.quantidade;
+        hash = 41 * hash + Objects.hashCode(this.produtos);
         return hash;
     }
 
@@ -97,6 +108,9 @@ public class Estoques implements Serializable {
         if (!Objects.equals(this.estoqueID, other.estoqueID)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (this.quantidade != other.quantidade) {
             return false;
         }
@@ -106,13 +120,13 @@ public class Estoques implements Serializable {
         return true;
     }
 
-    
-
     @Override
     public String toString() {
         return "Estoques{" + "estoqueID=" + estoqueID + '}';
     }
 
+    
+    
     
     
 }

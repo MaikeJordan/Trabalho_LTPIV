@@ -26,6 +26,8 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Usuarioid;
     
+    private int ativo;
+    
     @OneToOne
     private Funcionario funcionario;
     
@@ -81,13 +83,22 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + Objects.hashCode(this.Usuarioid);
-        hash = 47 * hash + Objects.hashCode(this.funcionario);
-        hash = 47 * hash + Objects.hashCode(this.login);
-        hash = 47 * hash + Objects.hashCode(this.senha);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.Usuarioid);
+        hash = 89 * hash + this.ativo;
+        hash = 89 * hash + Objects.hashCode(this.funcionario);
+        hash = 89 * hash + Objects.hashCode(this.login);
+        hash = 89 * hash + Objects.hashCode(this.senha);
         return hash;
     }
 
@@ -101,6 +112,9 @@ public class Usuario implements Serializable {
         }
         final Usuario other = (Usuario) obj;
         if (!Objects.equals(this.Usuarioid, other.Usuarioid)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.funcionario, other.funcionario)) {
@@ -117,7 +131,9 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "login=" + login + '}';
-    }   
+        return "Usuario{" + "Usuarioid=" + Usuarioid + '}';
+    }
+
+    
     
 }

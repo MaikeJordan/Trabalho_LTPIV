@@ -22,8 +22,10 @@ import javax.persistence.Id;
 public class Linhasproduto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private int ativo;
     
     @Column(name = "Nome",length = 255)
     private String nome;
@@ -53,11 +55,20 @@ public class Linhasproduto implements Serializable {
         this.nome = nome;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + this.ativo;
+        hash = 53 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -73,6 +84,9 @@ public class Linhasproduto implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -81,7 +95,8 @@ public class Linhasproduto implements Serializable {
 
     @Override
     public String toString() {
-        return "Linhasproduto{" + "id=" + id + '}';
+        return "Linhasproduto{" + "nome=" + nome + '}';
     }
 
+    
 }

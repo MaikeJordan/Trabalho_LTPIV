@@ -9,13 +9,11 @@ package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,8 +27,10 @@ import javax.validation.constraints.NotNull;
 public class Entrega implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Entregaid;
+    
+    private int ativo;
     
     @NotNull
     @Column(name = "Data")
@@ -115,15 +115,24 @@ public class Entrega implements Serializable {
         this.funcionarioID = funcionarioID;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.Entregaid);
-        hash = 59 * hash + Objects.hashCode(this.data);
-        hash = 59 * hash + Objects.hashCode(this.notaID);
-        hash = 59 * hash + Objects.hashCode(this.frotaAutomovelID);
-        hash = 59 * hash + Objects.hashCode(this.rotaID);
-        hash = 59 * hash + Objects.hashCode(this.funcionarioID);
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.Entregaid);
+        hash = 19 * hash + this.ativo;
+        hash = 19 * hash + Objects.hashCode(this.data);
+        hash = 19 * hash + Objects.hashCode(this.notaID);
+        hash = 19 * hash + Objects.hashCode(this.frotaAutomovelID);
+        hash = 19 * hash + Objects.hashCode(this.rotaID);
+        hash = 19 * hash + Objects.hashCode(this.funcionarioID);
         return hash;
     }
 
@@ -137,6 +146,9 @@ public class Entrega implements Serializable {
         }
         final Entrega other = (Entrega) obj;
         if (!Objects.equals(this.Entregaid, other.Entregaid)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.data, other.data)) {
@@ -156,10 +168,11 @@ public class Entrega implements Serializable {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Entrega[ id=" + Entregaid + " ]";
+        return "Entrega{" + "Entregaid=" + Entregaid + '}';
     }
+
     
 }

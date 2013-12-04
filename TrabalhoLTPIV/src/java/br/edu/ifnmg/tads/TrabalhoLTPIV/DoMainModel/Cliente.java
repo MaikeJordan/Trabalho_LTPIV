@@ -18,6 +18,7 @@ import javax.persistence.Entity;
 @Entity
 public class Cliente extends Pessoa implements Serializable {
   
+    private int ativo;
     @Column(name = "tipo", length = 50)
     private String tipo;
 
@@ -37,10 +38,19 @@ public class Cliente extends Pessoa implements Serializable {
         this.tipo = tipo;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.tipo);
+        int hash = 7;
+        hash = 37 * hash + this.ativo;
+        hash = 37 * hash + Objects.hashCode(this.tipo);
         return hash;
     }
 
@@ -53,6 +63,9 @@ public class Cliente extends Pessoa implements Serializable {
             return false;
         }
         final Cliente other = (Cliente) obj;
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
@@ -61,8 +74,9 @@ public class Cliente extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return this.getNome();
+        return "Cliente{" + "tipo=" + tipo + '}';
     }
+
     
     
     

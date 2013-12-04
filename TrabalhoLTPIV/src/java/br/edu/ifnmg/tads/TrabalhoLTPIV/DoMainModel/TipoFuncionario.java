@@ -22,8 +22,10 @@ import javax.persistence.Id;
 public class TipoFuncionario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long TipoFuncionarioid;
+    
+    private int ativo;
     
     @Column(name="nome", length = 255)
     private String nome;
@@ -67,12 +69,21 @@ public class TipoFuncionario implements Serializable {
         this.descricao = descricao;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.TipoFuncionarioid);
-        hash = 59 * hash + Objects.hashCode(this.nome);
-        hash = 59 * hash + Objects.hashCode(this.descricao);
+        hash = 61 * hash + Objects.hashCode(this.TipoFuncionarioid);
+        hash = 61 * hash + this.ativo;
+        hash = 61 * hash + Objects.hashCode(this.nome);
+        hash = 61 * hash + Objects.hashCode(this.descricao);
         return hash;
     }
 
@@ -88,6 +99,9 @@ public class TipoFuncionario implements Serializable {
         if (!Objects.equals(this.TipoFuncionarioid, other.TipoFuncionarioid)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -99,7 +113,9 @@ public class TipoFuncionario implements Serializable {
 
     @Override
     public String toString() {
-        return this.getNome();
+        return "TipoFuncionario{" + "nome=" + nome + '}';
     }
+
+    
     
 }

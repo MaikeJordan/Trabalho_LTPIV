@@ -29,8 +29,10 @@ import javax.validation.constraints.NotNull;
 public class Compra implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Compraid;
+    
+    private int ativo;
 
     @NotNull
     @Column(name = "Data")
@@ -140,17 +142,34 @@ public class Compra implements Serializable {
             Itens.remove(item);
         }
     }
-    
+
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
+    public List<ItemCompra> getItens() {
+        return Itens;
+    }
+
+    public void setItens(List<ItemCompra> Itens) {
+        this.Itens = Itens;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.Compraid);
-        hash = 37 * hash + Objects.hashCode(this.data);
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.valorTotal) ^ (Double.doubleToLongBits(this.valorTotal) >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.operacao);
-        hash = 37 * hash + Objects.hashCode(this.Itens);
-        hash = 37 * hash + Objects.hashCode(this.fornecedorID);
-        hash = 37 * hash + Objects.hashCode(this.funcionarioID);
+        hash = 61 * hash + Objects.hashCode(this.Compraid);
+        hash = 61 * hash + this.ativo;
+        hash = 61 * hash + Objects.hashCode(this.data);
+        hash = 61 * hash + (int) (Double.doubleToLongBits(this.valorTotal) ^ (Double.doubleToLongBits(this.valorTotal) >>> 32));
+        hash = 61 * hash + Objects.hashCode(this.operacao);
+        hash = 61 * hash + Objects.hashCode(this.Itens);
+        hash = 61 * hash + Objects.hashCode(this.fornecedorID);
+        hash = 61 * hash + Objects.hashCode(this.funcionarioID);
         return hash;
     }
 
@@ -164,6 +183,9 @@ public class Compra implements Serializable {
         }
         final Compra other = (Compra) obj;
         if (!Objects.equals(this.Compraid, other.Compraid)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.data, other.data)) {
@@ -186,10 +208,12 @@ public class Compra implements Serializable {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Compra[ id=" + Compraid + " ]";
+        return "Compra{" + "Compraid=" + Compraid + ", funcionarioID=" + funcionarioID + '}';
     }
+    
+    
     
 }

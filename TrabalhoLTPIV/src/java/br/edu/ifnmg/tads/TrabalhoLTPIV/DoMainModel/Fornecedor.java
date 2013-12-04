@@ -22,8 +22,10 @@ import javax.persistence.Id;
 public class Fornecedor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private int ativo;
 
     @Column(name = "Nome",length = 255 )
     private String nome;
@@ -64,12 +66,21 @@ public class Fornecedor implements Serializable {
         this.cnpj = cnpj;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.id);
-        hash = 61 * hash + Objects.hashCode(this.nome);
-        hash = 61 * hash + Objects.hashCode(this.cnpj);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + this.ativo;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.cnpj);
         return hash;
     }
 
@@ -85,6 +96,9 @@ public class Fornecedor implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -96,7 +110,9 @@ public class Fornecedor implements Serializable {
 
     @Override
     public String toString() {
-        return "Fornecedor{" + "id=" + id + '}';
+        return "Fornecedor{" + "nome=" + nome + '}';
     }
+
+    
 
 }

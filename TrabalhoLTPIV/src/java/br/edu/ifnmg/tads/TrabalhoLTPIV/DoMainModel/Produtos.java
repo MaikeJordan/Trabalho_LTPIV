@@ -25,8 +25,10 @@ import javax.persistence.ManyToOne;
 public class Produtos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ProdutoID;
+    
+    private int ativo;
     
     @Column(name = "Nome", length = 255)
     private String nome;
@@ -106,15 +108,24 @@ public class Produtos implements Serializable {
         this.linhaproduto = linhaproduto;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.ProdutoID);
-        hash = 83 * hash + Objects.hashCode(this.nome);
-        hash = 83 * hash + Objects.hashCode(this.valorvenda);
-        hash = 83 * hash + Objects.hashCode(this.valorcompra);
-        hash = 83 * hash + Objects.hashCode(this.tipoproduto);
-        hash = 83 * hash + Objects.hashCode(this.linhaproduto);
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.ProdutoID);
+        hash = 61 * hash + this.ativo;
+        hash = 61 * hash + Objects.hashCode(this.nome);
+        hash = 61 * hash + Objects.hashCode(this.valorvenda);
+        hash = 61 * hash + Objects.hashCode(this.valorcompra);
+        hash = 61 * hash + Objects.hashCode(this.tipoproduto);
+        hash = 61 * hash + Objects.hashCode(this.linhaproduto);
         return hash;
     }
 
@@ -128,6 +139,9 @@ public class Produtos implements Serializable {
         }
         final Produtos other = (Produtos) obj;
         if (!Objects.equals(this.ProdutoID, other.ProdutoID)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -150,8 +164,9 @@ public class Produtos implements Serializable {
 
     @Override
     public String toString() {
-        return "Produtos{" + "id=" + ProdutoID + '}';
+        return "Produtos{" + "nome=" + nome + '}';
     }
 
+    
     
 }

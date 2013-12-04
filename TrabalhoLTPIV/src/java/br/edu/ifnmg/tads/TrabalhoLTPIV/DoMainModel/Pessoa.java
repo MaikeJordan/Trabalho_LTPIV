@@ -33,8 +33,10 @@ import javax.persistence.Temporal;
 public class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Pessoaid;
+    
+    private int ativo;
     
     @Column(name="nome", length = 255)
     private String nome;
@@ -183,17 +185,34 @@ public class Pessoa implements Serializable {
         }
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
+    public List<Email> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<Email> emails) {
+        this.emails = emails;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.Pessoaid);
-        hash = 53 * hash + Objects.hashCode(this.nome);
-        hash = 53 * hash + Objects.hashCode(this.rg);
-        hash = 53 * hash + Objects.hashCode(this.cpf);
-        hash = 53 * hash + Objects.hashCode(this.datanascimento);
-        hash = 53 * hash + Objects.hashCode(this.emails);
-        hash = 53 * hash + Objects.hashCode(this.enderecos);
-        hash = 53 * hash + Objects.hashCode(this.telefones);
+        hash = 37 * hash + Objects.hashCode(this.Pessoaid);
+        hash = 37 * hash + this.ativo;
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.rg);
+        hash = 37 * hash + Objects.hashCode(this.cpf);
+        hash = 37 * hash + Objects.hashCode(this.datanascimento);
+        hash = 37 * hash + Objects.hashCode(this.emails);
+        hash = 37 * hash + Objects.hashCode(this.enderecos);
+        hash = 37 * hash + Objects.hashCode(this.telefones);
         return hash;
     }
 
@@ -209,6 +228,9 @@ public class Pessoa implements Serializable {
         if (!Objects.equals(this.Pessoaid, other.Pessoaid)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -216,9 +238,6 @@ public class Pessoa implements Serializable {
             return false;
         }
         if (!Objects.equals(this.cpf, other.cpf)) {
-            return false;
-        }
-        if (!Objects.equals(this.datanascimento, other.datanascimento)) {
             return false;
         }
         if (!Objects.equals(this.emails, other.emails)) {
@@ -232,10 +251,12 @@ public class Pessoa implements Serializable {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return this.getNome();
+        return "Pessoa{" + "Pessoaid=" + Pessoaid + '}';
     }
+
+    
     
 }

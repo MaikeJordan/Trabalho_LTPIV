@@ -7,6 +7,7 @@
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,8 +22,9 @@ import javax.persistence.Id;
 public class Cidades implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private int ativo;
     
     @Column(name = "Nome", length = 255)
     private String nome;
@@ -56,23 +58,44 @@ public class Cidades implements Serializable {
     public void setUf(String uf) {
         this.uf = uf;
     }
-    
+
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + this.ativo;
+        hash = 83 * hash + Objects.hashCode(this.nome);
+        hash = 83 * hash + Objects.hashCode(this.uf);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cidades)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Cidades other = (Cidades) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cidades other = (Cidades) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.uf, other.uf)) {
             return false;
         }
         return true;
@@ -80,7 +103,10 @@ public class Cidades implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
+        return "Cidades{" + "nome=" + nome + '}';
     }
+    
+
+    
     
 }

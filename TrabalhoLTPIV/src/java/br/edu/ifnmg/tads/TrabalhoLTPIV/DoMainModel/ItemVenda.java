@@ -23,8 +23,10 @@ import javax.persistence.OneToOne;
 public class ItemVenda implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ItemVendaid;
+    
+    private int ativo;
     
     @Column(name = "Quantidade")
     private int quantidade;
@@ -68,12 +70,21 @@ public class ItemVenda implements Serializable {
         this.produtoID = produtoID;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.ItemVendaid);
-        hash = 89 * hash + this.quantidade;
-        hash = 89 * hash + Objects.hashCode(this.produtoID);
+        int hash = 3;
+        hash = 73 * hash + Objects.hashCode(this.ItemVendaid);
+        hash = 73 * hash + this.ativo;
+        hash = 73 * hash + this.quantidade;
+        hash = 73 * hash + Objects.hashCode(this.produtoID);
         return hash;
     }
 
@@ -89,6 +100,9 @@ public class ItemVenda implements Serializable {
         if (!Objects.equals(this.ItemVendaid, other.ItemVendaid)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (this.quantidade != other.quantidade) {
             return false;
         }
@@ -100,7 +114,9 @@ public class ItemVenda implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ItemVenda[ id=" + ItemVendaid + " ]";
+        return "ItemVenda{" + "ItemVendaid=" + ItemVendaid + '}';
     }
+
+    
     
 }

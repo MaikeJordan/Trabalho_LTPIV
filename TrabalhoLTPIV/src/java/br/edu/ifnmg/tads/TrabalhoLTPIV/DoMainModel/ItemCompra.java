@@ -24,8 +24,10 @@ import javax.validation.constraints.NotNull;
 public class ItemCompra implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ItemCompraid;
+    
+    private int ativo;
    
     @NotNull
     @Column(name = "Quantidade")
@@ -71,12 +73,21 @@ public class ItemCompra implements Serializable {
         this.produtoID = produtoID;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.ItemCompraid);
-        hash = 97 * hash + this.quantidade;
-        hash = 97 * hash + Objects.hashCode(this.produtoID);
+        hash = 79 * hash + Objects.hashCode(this.ItemCompraid);
+        hash = 79 * hash + this.ativo;
+        hash = 79 * hash + this.quantidade;
+        hash = 79 * hash + Objects.hashCode(this.produtoID);
         return hash;
     }
 
@@ -92,6 +103,9 @@ public class ItemCompra implements Serializable {
         if (!Objects.equals(this.ItemCompraid, other.ItemCompraid)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (this.quantidade != other.quantidade) {
             return false;
         }
@@ -100,10 +114,11 @@ public class ItemCompra implements Serializable {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ItemCompra[ id=" + ItemCompraid + " ]";
+        return "ItemCompra{" + "ItemCompraid=" + ItemCompraid + '}';
     }
+
     
 }

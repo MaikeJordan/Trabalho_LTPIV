@@ -26,8 +26,10 @@ import javax.persistence.ManyToOne;
 public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Enderecoid;
+    
+    private int ativo;
     
     @Column(name="rua", length=255)
     private String rua;
@@ -149,17 +151,27 @@ public class Endereco implements Serializable {
         this.pessoa = pessoa;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 67 * hash + Objects.hashCode(this.Enderecoid);
-        hash = 67 * hash + Objects.hashCode(this.rua);
-        hash = 67 * hash + this.numero;
-        hash = 67 * hash + Objects.hashCode(this.bairro);
-        hash = 67 * hash + Objects.hashCode(this.cidade);
-        hash = 67 * hash + Objects.hashCode(this.estado);
-        hash = 67 * hash + Objects.hashCode(this.CEP);
-        hash = 67 * hash + Objects.hashCode(this.complemento);
+        hash = 71 * hash + Objects.hashCode(this.Enderecoid);
+        hash = 71 * hash + this.ativo;
+        hash = 71 * hash + Objects.hashCode(this.rua);
+        hash = 71 * hash + this.numero;
+        hash = 71 * hash + Objects.hashCode(this.bairro);
+        hash = 71 * hash + Objects.hashCode(this.cidade);
+        hash = 71 * hash + Objects.hashCode(this.estado);
+        hash = 71 * hash + Objects.hashCode(this.CEP);
+        hash = 71 * hash + Objects.hashCode(this.complemento);
+        hash = 71 * hash + Objects.hashCode(this.pessoa);
         return hash;
     }
 
@@ -173,6 +185,9 @@ public class Endereco implements Serializable {
         }
         final Endereco other = (Endereco) obj;
         if (!Objects.equals(this.Enderecoid, other.Enderecoid)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.rua, other.rua)) {
@@ -196,12 +211,17 @@ public class Endereco implements Serializable {
         if (!Objects.equals(this.complemento, other.complemento)) {
             return false;
         }
+        if (!Objects.equals(this.pessoa, other.pessoa)) {
+            return false;
+        }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Endereco[ id=" + Enderecoid + " ]";
+        return "Endereco{" + "Enderecoid=" + Enderecoid + '}';
     }
+
+    
     
 }

@@ -25,8 +25,10 @@ import javax.persistence.Temporal;
 public class Tabelaspreco implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private int ativo;
     
     @Column(name = "PrecoSaida")
     private Double precosaida;
@@ -107,15 +109,24 @@ public class Tabelaspreco implements Serializable {
         this.produto = produto;
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.precosaida);
-        hash = 67 * hash + Objects.hashCode(this.precoentrada);
-        hash = 67 * hash + Objects.hashCode(this.datacadastro);
-        hash = 67 * hash + Objects.hashCode(this.datamodificacao);
-        hash = 67 * hash + Objects.hashCode(this.produto);
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + this.ativo;
+        hash = 23 * hash + Objects.hashCode(this.precosaida);
+        hash = 23 * hash + Objects.hashCode(this.precoentrada);
+        hash = 23 * hash + Objects.hashCode(this.datacadastro);
+        hash = 23 * hash + Objects.hashCode(this.datamodificacao);
+        hash = 23 * hash + Objects.hashCode(this.produto);
         return hash;
     }
 
@@ -129,6 +140,9 @@ public class Tabelaspreco implements Serializable {
         }
         final Tabelaspreco other = (Tabelaspreco) obj;
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.precosaida, other.precosaida)) {
@@ -154,4 +168,5 @@ public class Tabelaspreco implements Serializable {
         return "Tabelaspreco{" + "id=" + id + '}';
     }
 
+    
 }
