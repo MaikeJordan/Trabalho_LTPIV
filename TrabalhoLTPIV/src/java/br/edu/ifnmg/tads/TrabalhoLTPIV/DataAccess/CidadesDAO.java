@@ -39,21 +39,21 @@ public  class CidadesDAO extends DAOGenerico<Cidades> implements ICidadesReposit
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " c.nome like nome ";
-                parametros.put("nome", obj.getNome());
+                
+                filtro += " c.nome like '%"+obj.getNome()+"%' ";
+               // parametros.put("nome", obj.getNome());
             }
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " c.id =:id";
-                parametros.put("id", obj.getId());
+                
+                 filtro += " c.id ="+obj.getId();
+                //parametros.put("id", obj.getId());
             }
             
             if (obj.getUf() != null && obj.getUf().length() > 0) {
-                filtro += " c.estado like estado ";
-                parametros.put("estado", obj.getUf());
+                
+                filtro += " c.uf ="+obj.getUf();
+               // parametros.put("uf", obj.getUf());
             }
             
             // Se houver filtros, coloca o "where" na consulta
