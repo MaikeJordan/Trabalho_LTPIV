@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DataAccess;
-
 
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IVendaRepositorio;
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Venda;
@@ -19,12 +17,12 @@ import javax.persistence.Query;
  * @author Mauro
  */
 @Stateless(name = "IVendaRepositorio")
-public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio{
-    
-    public VendaDAO(){
+public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio {
+
+    public VendaDAO() {
         super(Venda.class);
     }
-    
+
     @Override
     public List<Venda> Buscar(Venda obj) {
         // Corpo da consulta
@@ -51,7 +49,7 @@ public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio{
                 filtro += " c.id =:id";
                 parametros.put("id", obj.getVendaid());
             }
-   
+
             // Se houver filtros, coloca o "where" na consulta
             if (filtro.length() > 0) {
                 consulta = consulta + " where " + filtro;
@@ -73,7 +71,7 @@ public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio{
 
     @Override
     public boolean Apagar(Venda obj) {
-       try {
+        try {
             Query query = manager.createQuery("Update venda s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getVendaid());
             query.executeUpdate();
@@ -84,6 +82,18 @@ public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio{
             ex.printStackTrace();
 
             return false;
+        }
+    }
+
+    @Override
+    public boolean verificaESalva(Venda obj) throws Exception {
+
+        //Verifica se nao existe forma de pagamento com mesmo nome
+        if (!this.Buscar(obj).isEmpty()) {
+
+            throw new Exception("Venda já existente !");
+        } else {
+            return this.Salvar(obj);
         }
     }
 }

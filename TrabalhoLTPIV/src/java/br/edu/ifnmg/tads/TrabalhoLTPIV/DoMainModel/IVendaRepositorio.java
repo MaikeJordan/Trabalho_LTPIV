@@ -14,5 +14,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IVendaRepositorio extends IRepositorio<Venda>{
+
+    public boolean verificaESalva(Venda obj) throws Exception;
     
 }
