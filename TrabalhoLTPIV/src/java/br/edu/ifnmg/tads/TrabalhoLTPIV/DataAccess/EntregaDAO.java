@@ -39,16 +39,15 @@ public class EntregaDAO extends DAOGenerico<Entrega> implements IEntregaReposito
         if (obj != null) {
             //Data
             if (obj.getData() != null && obj.getData().before(null)) {
-                filtro += " e.data=:data ";
-                parametros.put("data", obj.getData());
+                
+                filtro += " e.data ="+obj.getData();
+                //parametros.put("data", obj.getData());
             }
             //Id
             if (obj.getEntregaid() != null && obj.getEntregaid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " e.id =:id";
-                parametros.put("id", obj.getEntregaid());
+                
+               filtro += " c.id ="+obj.getEntregaid();
+                //parametros.put("id", obj.getEntregaid());
             }
    
             // Se houver filtros, coloca o "where" na consulta
