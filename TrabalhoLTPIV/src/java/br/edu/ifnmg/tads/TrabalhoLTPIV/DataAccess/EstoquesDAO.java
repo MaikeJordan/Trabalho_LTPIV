@@ -40,18 +40,17 @@ public class EstoquesDAO extends DAOGenerico<Estoques> implements IEstoquesRepos
         if (obj != null) {
             //Nome
             if (obj.getProdutos().getNome() != null && obj.getProdutos().getNome().length() > 0) {
-                filtro += " e.nome=:nome ";
-                parametros.put("nome", obj.getProdutos().getNome());
+                
+                filtro += " e.produtos like '%"+obj.getProdutos().getNome()+"%' ";
+                //parametros.put("nome", obj.getProdutos().getNome());
             }
             
             
           //Id
             if (obj.getEstoqueID() != null && obj.getEstoqueID() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " e.id =:id";
-                parametros.put("id", obj.getEstoqueID());
+                
+                filtro += " e.estoqueID ="+obj.getEstoqueID();
+                //parametros.put("id", obj.getEstoqueID());
             }
             // Se houver filtros, coloca o "where" na consulta
             if (filtro.length() > 0) {
@@ -75,8 +74,8 @@ public class EstoquesDAO extends DAOGenerico<Estoques> implements IEstoquesRepos
     @Override
     public boolean Apagar(Estoques obj) {
        try {
-            Query query = manager.createQuery("Update estoque s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getEstoqueID());
+            Query query = manager.createQuery("Update estoques s set s.ativo = 0 WHERE s.estoqueID :=estoqueID");
+            query.setParameter("estoqueID", obj.getEstoqueID());
             query.executeUpdate();
 
             return true;
