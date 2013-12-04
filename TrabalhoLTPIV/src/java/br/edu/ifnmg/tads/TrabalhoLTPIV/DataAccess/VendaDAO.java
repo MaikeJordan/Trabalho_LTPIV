@@ -85,15 +85,4 @@ public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio {
         }
     }
 
-    @Override
-    public boolean verificaESalva(Venda obj) throws Exception {
-
-        //Verifica se nao existe forma de pagamento com mesmo nome
-        if (!this.Buscar(obj).isEmpty()) {
-
-            throw new Exception("Venda já existente !");
-        } else {
-            return this.Salvar(obj);
-        }
-    }
 }

@@ -13,6 +13,6 @@ import javax.ejb.Remote;
  * @author Mauro
  */
 @Remote
-public interface IVendaRepositorio extends IRepositorio<Venda>{
+public interface ITipoProdutoRepositorio extends IRepositorio<TipoProduto>{
     
 }

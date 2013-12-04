@@ -45,7 +45,7 @@ public class VendaController implements Serializable {
     
     public void Salvar(){
         try{
-            if(dao.verificaESalva(entidade)){
+            if(dao.Salvar(entidade)){
                 listagem = null;
                 exibirMensagem("Salvo Com Sucesso!");
                 entidade = new Venda();

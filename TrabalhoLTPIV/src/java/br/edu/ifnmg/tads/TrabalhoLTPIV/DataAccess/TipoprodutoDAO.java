@@ -6,8 +6,8 @@
 
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DataAccess;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoprodutoRepositorio;
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Tipoproduto;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoProdutoRepositorio;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.TipoProduto;
 import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -18,14 +18,14 @@ import javax.persistence.Query;
  * @author Mauro
  */
 @Stateless(name = "ITipoprodutoRepositorio")
-public class TipoprodutoDAO extends DAOGenerico<Tipoproduto> implements ITipoprodutoRepositorio{
+public class TipoprodutoDAO extends DAOGenerico<TipoProduto> implements ITipoProdutoRepositorio{
     
     public TipoprodutoDAO(){
-        super(Tipoproduto.class);
+        super(TipoProduto.class);
     }
     
     @Override
-    public List<Tipoproduto> Buscar(Tipoproduto obj) {
+    public List<TipoProduto> Buscar(TipoProduto obj) {
          // Corpo da consulta
         String consulta = "select t from tipoproduto t";
 
@@ -71,7 +71,7 @@ public class TipoprodutoDAO extends DAOGenerico<Tipoproduto> implements ITipopro
     }
 
     @Override
-    public boolean Apagar(Tipoproduto obj) {
+    public boolean Apagar(TipoProduto obj) {
         try {
             Query query = manager.createQuery("Update tipoproduto s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getId());
