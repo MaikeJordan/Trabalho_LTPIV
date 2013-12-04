@@ -39,17 +39,17 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> implements IFornecedo
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " f.nome=:nome ";
-                parametros.put("nome", obj.getNome());
+                
+                filtro += " f.nome like '%"+obj.getNome()+"%' ";
+                //parametros.put("nome", obj.getNome());
             }
             
             //Cnpj
             if (obj.getCnpj() != null && obj.getCnpj().length() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " f.cnpj=:cnpj ";
-                parametros.put("cnpj", obj.getCnpj());
+                
+                
+                filtro += " e.estoqueID ="+obj.getCnpj();
+                //parametros.put("cnpj", obj.getCnpj());
             }
           
             // Se houver filtros, coloca o "where" na consulta
