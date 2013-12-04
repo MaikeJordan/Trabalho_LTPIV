@@ -39,24 +39,27 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> implements IFuncion
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " f.nome=:nome ";
-                parametros.put("nome", obj.getNome());
+               
+                 filtro += " f.nome like '%"+obj.getNome()+"%' ";
+                //parametros.put("nome", obj.getNome());
+            }
+            //Tipo
+            if (obj.getTipo().getNome() != null && obj.getTipo().getNome().length() > 0) {
+               
+                 filtro += " f.tipo like '%"+obj.getTipo().getNome()+"%' ";
+                //parametros.put("nome", obj.getNome());
             }
             //Id
             if (obj.getPessoaid() != null && obj.getPessoaid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " f.id=:id ";
-                parametros.put("id", obj.getPessoaid());
+                
+                filtro += " f.Pessoaid ="+obj.getPessoaid();
+                //parametros.put("id", obj.getPessoaid());
             }
             //Cpf
             if (obj.getCpf() != null && obj.getCpf().length() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " f.cpf=:cpf ";
-                parametros.put("cpf", obj.getCpf());
+                
+                filtro += " f.cpf ="+obj.getCpf();
+                //parametros.put("cpf", obj.getCpf());
             }
 
             // Se houver filtros, coloca o "where" na consulta
@@ -81,8 +84,8 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> implements IFuncion
     @Override
     public boolean Apagar(Funcionario obj) {
         try {
-            Query query = manager.createQuery("Update funcionario s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getPessoaid());
+            Query query = manager.createQuery("Update funcionario s set s.ativo = 0 WHERE s.Pessoaid :=Pessoaid");
+            query.setParameter("Pessoaid", obj.getPessoaid());
             query.executeUpdate();
 
             return true;
