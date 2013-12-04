@@ -39,28 +39,29 @@ public class ProdutosDAO extends DAOGenerico<Produtos> implements IProdutosRepos
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " p.nome=:nome ";
-                parametros.put("nome", obj.getNome());
+                
+                filtro += " p.nome like '%"+obj.getNome()+"%' ";
+                //parametros.put("nome", obj.getNome());
             }
             // Tipo
             
             if (obj.getTipoproduto().getNome() != null && obj.getTipoproduto().getNome().length() > 0) {
-                filtro += " p.nome=:nome ";
-                parametros.put("nome", obj.getTipoproduto().getNome());
+                
+                filtro += " p.tipoproduto like '%"+obj.getTipoproduto().getNome()+"%' ";
+                //parametros.put("nome", obj.getTipoproduto().getNome());
             }
             // Linha
             
             if (obj.getLinhaproduto().getNome() != null && obj.getLinhaproduto().getNome().length() > 0) {
-                filtro += " p.nome=:nome ";
-                parametros.put("nome", obj.getLinhaproduto().getNome());
+                
+                filtro += " p.linhaproduto like '%"+obj.getLinhaproduto().getNome()+"%' ";
+                //parametros.put("nome", obj.getLinhaproduto().getNome());
             }
             //Id
             if (obj.getProdutoID() != null && obj.getProdutoID() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " p.id =:id";
-                parametros.put("id", obj.getProdutoID());
+                
+                filtro += " p.ProdutoID ="+obj.getProdutoID();
+                //parametros.put("id", obj.getProdutoID());
             }
    
             // Se houver filtros, coloca o "where" na consulta
