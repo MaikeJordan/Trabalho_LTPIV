@@ -40,31 +40,29 @@ public class RotasDAO extends DAOGenerico<Rotas> implements IRotasRepositorio{
             
             //Nome cidade origem
             if (obj.getCidadeorigem().getNome() != null && obj.getCidadeorigem().getNome().length() > 0) {
-                filtro += " r.nome=:nome ";
-                parametros.put("nome", obj.getCidadeorigem().getNome());
+                
+                filtro += " r.cidadeorigem like '%"+obj.getCidadeorigem()+"%' ";
+               // parametros.put("nome", obj.getCidadeorigem().getNome());
             }
             //Nome cidade destino
             if (obj.getCidadedestino().getNome() != null && obj.getCidadedestino().getNome().length() > 0) {
-                filtro += " r.nome=:nome ";
-                parametros.put("nome", obj.getCidadedestino().getNome());
+                
+                filtro += " r.cidadedestino like '%"+obj.getCidadedestino()+"%' ";
+                //parametros.put("nome", obj.getCidadedestino().getNome());
             }
             
             //Distância
             if (obj.getDistancia() != 0 && obj.getDistancia() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " r.id =:id";
-                parametros.put("distancia", obj.getDistancia());
+                
+                filtro += " r.distancia ="+obj.getDistancia();
+                //parametros.put("distancia", obj.getDistancia());
             }
    
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " r.id =:id";
-                parametros.put("id", obj.getId());
+                
+                filtro += " r.id ="+obj.getId();
+                //parametros.put("id", obj.getId());
             }
             
             // Se houver filtros, coloca o "where" na consulta
