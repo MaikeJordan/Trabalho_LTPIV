@@ -39,16 +39,15 @@ public class TipoFuncionarioDAO extends DAOGenerico<TipoFuncionario> implements 
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " f.nome=:nome ";
-                parametros.put("nome", obj.getNome());
+                
+                filtro += " f.nome like '%"+obj.getNome()+"%' ";
+                //parametros.put("nome", obj.getNome());
             }
             //Id
             if (obj.getTipoFuncionarioid() != null && obj.getTipoFuncionarioid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " f.id=:id ";
-                parametros.put("id", obj.getTipoFuncionarioid());
+                
+                filtro += " f.TipoFuncionarioid ="+obj.getTipoFuncionarioid();
+                //parametros.put("id", obj.getTipoFuncionarioid());
             }
             
             // Se houver filtros, coloca o "where" na consulta
@@ -73,8 +72,8 @@ public class TipoFuncionarioDAO extends DAOGenerico<TipoFuncionario> implements 
     @Override
     public boolean Apagar(TipoFuncionario obj) {
         try {
-            Query query = manager.createQuery("Update tipofuncionario s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getTipoFuncionarioid());
+            Query query = manager.createQuery("Update tipofuncionario s set s.ativo = 0 WHERE s.TipoFuncionarioid :=TipoFuncionarioid");
+            query.setParameter("TipoFuncionarioid", obj.getTipoFuncionarioid());
             query.executeUpdate();
 
             return true;
