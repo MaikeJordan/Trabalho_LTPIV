@@ -39,16 +39,15 @@ public class NotaDAO extends DAOGenerico<Nota> implements INotaRepositorio{
         if (obj != null) {
             //Data
             if (obj.getVendaid().getData() != null && obj.getVendaid().getData().before(null)) {
-                filtro += " n.data=:data ";
-                parametros.put("data", obj.getVendaid().getData());
+                
+                filtro += " n.vendaid ="+obj.getVendaid();
+                //parametros.put("data", obj.getVendaid().getData());
             }
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " n.id =:id";
-                parametros.put("id", obj.getId());
+                
+                filtro += " n.id ="+obj.getId();
+                //parametros.put("id", obj.getId());
             }
    
             // Se houver filtros, coloca o "where" na consulta
