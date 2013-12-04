@@ -38,16 +38,16 @@ public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio {
         if (obj != null) {
             //Data
             if (obj.getData() != null && obj.getData().before(null)) {
-                filtro += " c.data=:data ";
-                parametros.put("data", obj.getData());
+                
+                filtro += " v.data ="+obj.getData();
+                //parametros.put("data", obj.getData());
             }
             //Id
             if (obj.getVendaid() != null && obj.getVendaid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " c.id =:id";
-                parametros.put("id", obj.getVendaid());
+                
+                
+                filtro += " v.Vendaid ="+obj.getVendaid();
+                //parametros.put("id", obj.getVendaid());
             }
 
             // Se houver filtros, coloca o "where" na consulta
@@ -72,8 +72,8 @@ public class VendaDAO extends DAOGenerico<Venda> implements IVendaRepositorio {
     @Override
     public boolean Apagar(Venda obj) {
         try {
-            Query query = manager.createQuery("Update venda s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getVendaid());
+            Query query = manager.createQuery("Update venda s set s.ativo = 0 WHERE s.Vendaid :=Vendaid");
+            query.setParameter("Vendaid", obj.getVendaid());
             query.executeUpdate();
 
             return true;
