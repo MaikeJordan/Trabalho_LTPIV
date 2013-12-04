@@ -39,28 +39,29 @@ public class TabelasprecoDAO extends DAOGenerico<Tabelaspreco> implements ITabel
         if (obj != null) {
             //Data cadastro
             if (obj.getDatacadastro() != null && obj.getDatacadastro().before(null)) {
-                filtro += " t.data=:data ";
-                parametros.put("datacadastro", obj.getDatacadastro());
+                
+                filtro += " t.datacadastro ="+obj.getDatacadastro();
+                //parametros.put("datacadastro", obj.getDatacadastro());
             }
             
             //Data modificação
             if (obj.getDatamodificacao() != null && obj.getDatamodificacao().before(null)) {
-                filtro += " t.data=:data ";
-                parametros.put("datamodificacao", obj.getDatamodificacao());
+                
+                filtro += " t.datamodificacao ="+obj.getDatamodificacao();
+               //parametros.put("datamodificacao", obj.getDatamodificacao());
             }
             
             //Produto
             if (obj.getProduto().getNome()!= null && obj.getProduto().getNome().length() > 0) {
-                filtro += " t.nome=:nome ";
-                parametros.put("nome", obj.getProduto().getNome());
+                
+                filtro += " t.produto like '%"+obj.getProduto().getNome()+"%' ";
+                //parametros.put("nome", obj.getProduto().getNome());
             }
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " t.id =:id";
-                parametros.put("id", obj.getId());
+                
+                filtro += " t.id ="+obj.getId();
+                //parametros.put("id", obj.getId());
             }
    
             // Se houver filtros, coloca o "where" na consulta
