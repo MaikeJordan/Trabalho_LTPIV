@@ -39,23 +39,23 @@ public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteReposito
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " c.nome=:nome ";
-                parametros.put("nome", obj.getNome());
+                
+                filtro += " c.nome like '%"+obj.getNome()+"%' ";
+                //parametros.put("nome", obj.getNome());
             }
             
             //Cpf
             if (obj.getCpf() != null && obj.getCpf().length() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " c.cpf=:cpf ";
-                parametros.put("cpf", obj.getCpf());
+                
+                filtro += " c.cpf ="+obj.getCpf();
+                //parametros.put("cpf", obj.getCpf());
             }
           // Tipo
             
             if (obj.getTipo() != null && obj.getTipo().length() > 0) {
-                filtro += " c.tipo=:tipo ";
-                parametros.put("tipo", obj.getTipo());
+                
+                filtro += " c.tipo like '%"+obj.getTipo()+"%' ";
+                //parametros.put("tipo", obj.getTipo());
             }
             // Se houver filtros, coloca o "where" na consulta
             if (filtro.length() > 0) {
