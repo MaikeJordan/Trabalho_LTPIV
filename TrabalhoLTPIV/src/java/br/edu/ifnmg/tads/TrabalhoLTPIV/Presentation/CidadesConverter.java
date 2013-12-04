@@ -20,7 +20,7 @@ import javax.enterprise.context.SessionScoped;
  *
  * @author Mauro
  */
-@Named(value = "cidadesConverter")
+@Named(value = "CidadesConverter")
 @SessionScoped
 public class CidadesConverter implements Serializable, Converter{
 
