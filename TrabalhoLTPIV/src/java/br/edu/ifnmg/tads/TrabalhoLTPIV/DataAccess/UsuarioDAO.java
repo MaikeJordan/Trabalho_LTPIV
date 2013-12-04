@@ -40,16 +40,15 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioReposito
         if (obj != null) {
             //Nome
             if (obj.getLogin()!= null && obj.getLogin().length() > 0) {
-                filtro += " u.login=:login ";
-                parametros.put("login", obj.getLogin());
+                
+                 filtro += " u.login like '%"+obj.getLogin()+"%' ";
+                //parametros.put("login", obj.getLogin());
             }
             //Id
-            if (obj.getFuncionario().getPessoaid()!= null && obj.getFuncionario().getPessoaid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " u.id=:id ";
-                parametros.put("id", obj.getFuncionario().getPessoaid());
+            if (obj.getUsuarioid()!= null && obj.getUsuarioid() > 0) {
+                
+                filtro += " u.id ="+obj.getUsuarioid();
+                //parametros.put("id", obj.getFuncionario().getPessoaid());
             }
 
             // Se houver filtros, coloca o "where" na consulta
@@ -95,8 +94,8 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioReposito
     @Override
     public boolean Apagar(Usuario obj) {
        try {
-            Query query = manager.createQuery("Update usuario s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getFuncionario());
+            Query query = manager.createQuery("Update usuario s set s.ativo = 0 WHERE s.Usuarioid :=Usuarioid");
+            query.setParameter("Usuarioid", obj.getUsuarioid());
             query.executeUpdate();
 
             return true;
