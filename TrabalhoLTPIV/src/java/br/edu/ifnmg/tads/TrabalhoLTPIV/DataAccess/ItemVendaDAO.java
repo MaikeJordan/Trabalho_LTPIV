@@ -39,16 +39,15 @@ public class ItemVendaDAO extends DAOGenerico<ItemVenda> implements IItemVendaRe
         if (obj != null) {
             //Produto
             if (obj.getProdutoID().getNome()!= null && obj.getProdutoID().getNome().length() > 0) {
-                filtro += " v.nome=:nome ";
-                parametros.put("nome", obj.getProdutoID().getNome());
+                
+                filtro += " v.produtoID like '%"+obj.getProdutoID().getNome()+"%' ";
+                //parametros.put("nome", obj.getProdutoID().getNome());
             }
             //Id
             if (obj.getItemVendaid() != null && obj.getItemVendaid() > 0) {
-                if (filtro.length() > 0) {
-                    filtro = filtro + " and ";
-                }
-                filtro += " v.id =:id";
-                parametros.put("id", obj.getItemVendaid());
+                
+                filtro += " v.ItemVendaid ="+obj.getItemVendaid();
+                //parametros.put("id", obj.getItemVendaid());
             }
    
             // Se houver filtros, coloca o "where" na consulta
@@ -73,8 +72,8 @@ public class ItemVendaDAO extends DAOGenerico<ItemVenda> implements IItemVendaRe
     @Override
     public boolean Apagar(ItemVenda obj) {
        try {
-            Query query = manager.createQuery("Update itemvenda s set s.ativo = 0 WHERE s.id :=id");
-            query.setParameter("id", obj.getItemVendaid());
+            Query query = manager.createQuery("Update itemvenda s set s.ativo = 0 WHERE s.ItemVendaid :=ItemVendaid");
+            query.setParameter("ItemVendaid", obj.getItemVendaid());
             query.executeUpdate();
 
             return true;
