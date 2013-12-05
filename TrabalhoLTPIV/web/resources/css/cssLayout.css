@@ -57,5 +57,21 @@
   font-weight : bold;
   text-decoration : underline;
 }
+body{
+       background-color:#F0F0F0;
+}
 
-
+#login{
+         background-color:#dddddd;
+         border-radius: 4px;
+         border-left-color: #AFAFAF;
+         margin: 0 auto;
+         width: 460px;
+         height: 360px;
+         margin-top: 80px;
+}
+#grid{
+         background-color: #F0F0F0;
+         width: 460px;
+         height: 360px;
+}
