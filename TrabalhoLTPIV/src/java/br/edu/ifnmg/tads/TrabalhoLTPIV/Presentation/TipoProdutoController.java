@@ -12,6 +12,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -36,6 +38,43 @@ public class TipoProdutoController implements Serializable {
         this.filtro = new TipoProduto();
     }
 
+    
+    public void exibirMensagem(String msg) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Aviso",msg));
+    }
+    
+    public void salvar(){
+        dao.Salvar(entidade);
+        listagem = null;
+        exibirMensagem("Salvo com sucesso!");
+    }
+    
+    public String editar(){
+        return "CadastroTipoProduto.xhtml";
+    }
+    
+    public String criar(){
+        entidade = new TipoProduto();
+        return "CadastroTipoProduto.xhtml";
+    }
+    
+    public String apagar(){
+        dao.Apagar(entidade);
+        listagem = null;
+        exibirMensagem("Apagado com sucesso!");
+        return "ListagemTipoProduto.xhtml";
+    }
+    
+    public String filtrar() {
+        listagem = dao.Buscar(filtro);
+        return "ListagemTipoProduto.xhtml";
+    }
+
+    public String voltar(){
+        listagem = null;
+        return "ListagemTipoProduto.xhtml";
+    }
     
     public ITipoProdutoRepositorio getDao() {
         return dao;
