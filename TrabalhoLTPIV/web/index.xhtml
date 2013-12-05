@@ -1,38 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Acesso ao Sistema Rede Norte Distribuídora</title>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-    </h:head>
-    <h:body>
-         <h:form>
-            
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-             <div id="login">
-                 <p:panelGrid columns="2" id="grid" style="width: 460px; height:140px;">  
-                    <f:facet name="header">  
-                        Autenticação do Usuário 
-                    </f:facet> 
-                    <p:outputLabel value="Login:" />
-                    <p:inputText id="usuario" value="#{autenticacaoController.login}" required="true" requiredMessage="Insira o Usuario!"/>
-                    <p:outputLabel value="Senha:" />
-                    <p:password id="senha" value="#{autenticacaoController.senha}" required="true" requiredMessage="Insira a senha!" />
+    <body>
 
-                </p:panelGrid>
-                <p:panel id="Rodape" >
-                    <p:commandButton value="Entrar" onclick="alerta.show()" action="#{autenticacaoController.validar()}"/>
-                    
-                </p:panel>
-                
-                </div>
-            <p:growl id="alerta" showDetail="true" life="3000"  sticky="true" />   
-        </h:form>
-        
-    </h:body>
+        <ui:composition template="./WEB-INF/Template.xhtml">
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                content
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
 </html>
-
