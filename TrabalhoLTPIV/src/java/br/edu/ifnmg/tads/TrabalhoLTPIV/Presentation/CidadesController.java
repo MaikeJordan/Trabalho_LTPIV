@@ -40,7 +40,6 @@ public class CidadesController implements Serializable{
     public CidadesController() {
         entidade = new Cidades();
         filtro = new Cidades();
-       
         f = new Cidades();
     }
     
