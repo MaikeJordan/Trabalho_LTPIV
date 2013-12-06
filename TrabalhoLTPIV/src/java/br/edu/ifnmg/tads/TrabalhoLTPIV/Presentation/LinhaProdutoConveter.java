@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.edu.ifnmg.tads.TrabalhoLTPIV.Presentation;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IUsuarioRepositorio;
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Usuario;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ILinhasprodutoRepositorio;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Linhasproduto;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -18,18 +19,18 @@ import javax.faces.convert.Converter;
  *
  * @author HERICK
  */
-@Named(value = "usuarioConveter")
+@Named(value = "linhaProdutoConveter")
 @SessionScoped
-public class UsuarioConveter implements Serializable, Converter {
+public class LinhaProdutoConveter implements Serializable, Converter {
 
     /**
-     * Creates a new instance of UsuarioConveter
+     * Creates a new instance of LinhaProdutoConveter
      */
-    IUsuarioRepositorio dao;
-
-    public UsuarioConveter() {
+    ILinhasprodutoRepositorio dao;
+    
+    public LinhaProdutoConveter() {
     }
-
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.trim().equals("")) {
@@ -45,9 +46,9 @@ public class UsuarioConveter implements Serializable, Converter {
         if (value == null || value.toString().equals("")) {
             return "";
         } else {
-            Usuario u = (Usuario) value;
-            return u.getUsuarioid().toString();
+            Linhasproduto lp = (Linhasproduto) value;
+            return lp.getId().toString();
         }
     }
-
+    
 }

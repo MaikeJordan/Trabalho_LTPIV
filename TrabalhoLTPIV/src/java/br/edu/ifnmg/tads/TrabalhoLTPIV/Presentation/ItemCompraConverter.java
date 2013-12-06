@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.edu.ifnmg.tads.TrabalhoLTPIV.Presentation;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IUsuarioRepositorio;
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Usuario;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IItemCompraRepositorio;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ItemCompra;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,18 +20,19 @@ import javax.faces.convert.Converter;
  *
  * @author HERICK
  */
-@Named(value = "usuarioConveter")
+@Named(value = "itemCompraConverter")
 @SessionScoped
-public class UsuarioConveter implements Serializable, Converter {
+public class ItemCompraConverter implements Serializable, Converter {
 
     /**
-     * Creates a new instance of UsuarioConveter
+     * Creates a new instance of ItemCompraConverter
      */
-    IUsuarioRepositorio dao;
-
-    public UsuarioConveter() {
+    @EJB
+    IItemCompraRepositorio dao;
+    
+    public ItemCompraConverter() {
     }
-
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.trim().equals("")) {
@@ -45,9 +48,10 @@ public class UsuarioConveter implements Serializable, Converter {
         if (value == null || value.toString().equals("")) {
             return "";
         } else {
-            Usuario u = (Usuario) value;
-            return u.getUsuarioid().toString();
+            ItemCompra ic = (ItemCompra) value;
+            return ic.getItemCompraid().toString();
         }
-    }
 
+    }
+    
 }

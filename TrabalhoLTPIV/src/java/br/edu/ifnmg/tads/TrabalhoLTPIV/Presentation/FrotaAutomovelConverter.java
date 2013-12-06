@@ -5,11 +5,12 @@
  */
 package br.edu.ifnmg.tads.TrabalhoLTPIV.Presentation;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IUsuarioRepositorio;
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Usuario;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.FrotaAutomovel;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.IFrotasautomoveisRepositorio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,16 +19,17 @@ import javax.faces.convert.Converter;
  *
  * @author HERICK
  */
-@Named(value = "usuarioConveter")
+@Named(value = "frotaAutomovelConverter")
 @SessionScoped
-public class UsuarioConveter implements Serializable, Converter {
+public class FrotaAutomovelConverter implements Serializable, Converter {
 
     /**
-     * Creates a new instance of UsuarioConveter
+     * Creates a new instance of FrotaAutomovelConverter
      */
-    IUsuarioRepositorio dao;
+    @EJB
+    IFrotasautomoveisRepositorio dao;
 
-    public UsuarioConveter() {
+    public FrotaAutomovelConverter() {
     }
 
     @Override
@@ -45,8 +47,8 @@ public class UsuarioConveter implements Serializable, Converter {
         if (value == null || value.toString().equals("")) {
             return "";
         } else {
-            Usuario u = (Usuario) value;
-            return u.getUsuarioid().toString();
+            FrotaAutomovel fa = (FrotaAutomovel) value;
+            return fa.getFrotaAutomevelid().toString();
         }
     }
 
