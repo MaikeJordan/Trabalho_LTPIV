@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.TrabalhoLTPIV.DataAccess;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoProdutoRepositorio;
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.TipoProduto;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoprodutoRepositorio;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.Tipo;
 import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -18,15 +17,15 @@ import javax.persistence.Query;
  * @author Mauro
  */
 @Stateless(name = "ITipoprodutoRepositorio")
-public class TipoprodutoDAO extends DAOGenerico<TipoProduto> implements ITipoProdutoRepositorio{
-    
-    public TipoprodutoDAO(){
-        super(TipoProduto.class);
+public class TipoprodutoDAO extends DAOGenerico<Tipo> implements ITipoprodutoRepositorio {
+
+    public TipoprodutoDAO() {
+        super(Tipo.class);
     }
-    
+
     @Override
-    public List<TipoProduto> Buscar(TipoProduto obj) {
-         // Corpo da consulta
+    public List<Tipo> Buscar(Tipo obj) {
+        // Corpo da consulta
         String consulta = "select t from tipoproduto t";
 
         // A parte where da consulta
@@ -39,17 +38,17 @@ public class TipoprodutoDAO extends DAOGenerico<TipoProduto> implements ITipoPro
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                
-                 filtro += " t.nome like '%"+obj.getNome()+"%' ";
+
+                filtro += " t.nome like '%" + obj.getNome() + "%' ";
                 //parametros.put("nome", obj.getNome());
             }
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                
-                filtro += " t.id ="+obj.getId();
+
+                filtro += " t.id =" + obj.getId();
                 //parametros.put("id", obj.getId());
             }
-            
+
             // Se houver filtros, coloca o "where" na consulta
             if (filtro.length() > 0) {
                 consulta = consulta + " where " + filtro;
@@ -70,7 +69,7 @@ public class TipoprodutoDAO extends DAOGenerico<TipoProduto> implements ITipoPro
     }
 
     @Override
-    public boolean Apagar(TipoProduto obj) {
+    public boolean Apagar(Tipo obj) {
         try {
             Query query = manager.createQuery("Update tipoproduto s set s.ativo = 0 WHERE s.id :=id");
             query.setParameter("id", obj.getId());

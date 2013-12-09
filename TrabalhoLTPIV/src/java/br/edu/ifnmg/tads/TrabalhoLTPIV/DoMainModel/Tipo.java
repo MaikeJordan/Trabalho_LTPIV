@@ -16,10 +16,10 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Mauro
+ * @author Desktop
  */
 @Entity
-public class TipoProduto implements Serializable {
+public class Tipo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,15 +27,16 @@ public class TipoProduto implements Serializable {
     
     @Column(name = "Nome", length = 255)
     private String nome;
+    
     @Column(name = "Descricao",length = 255)
     private String descricao;
     
-    public TipoProduto(String nome, String descricao){
+    public Tipo(String nome, String descricao){
         this.nome = nome;
         this.descricao = descricao;
     }
     
-    public TipoProduto(){
+    public Tipo(){
         this.nome = "";
         this.descricao = "";
     }
@@ -79,7 +80,7 @@ public class TipoProduto implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TipoProduto other = (TipoProduto) obj;
+        final Tipo other = (Tipo) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -96,6 +97,4 @@ public class TipoProduto implements Serializable {
     public String toString() {
         return "Tipoproduto{" + "id=" + id + '}';
     }
-
-    
 }

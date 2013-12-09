@@ -6,7 +6,7 @@
 
 package br.edu.ifnmg.tads.TrabalhoLTPIV.Presentation;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoProdutoRepositorio;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoprodutoRepositorio;
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.TipoProduto;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -25,7 +25,7 @@ public class TipoProdutoController implements Serializable {
      * Creates a new instance of TipoProdutoController
      */
     
-    ITipoProdutoRepositorio dao;
+    ITipoprodutoRepositorio dao;
     TipoProduto entidade;
     TipoProduto filtro;
     List<TipoProduto> listagem;
@@ -37,11 +37,11 @@ public class TipoProdutoController implements Serializable {
     }
 
     
-    public ITipoProdutoRepositorio getDao() {
+    public ITipoprodutoRepositorio getDao() {
         return dao;
     }
 
-    public void setDao(ITipoProdutoRepositorio dao) {
+    public void setDao(ITipoprodutoRepositorio dao) {
         this.dao = dao;
     }
 

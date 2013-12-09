@@ -8,10 +8,8 @@ package br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,12 +38,12 @@ public class Produtos implements Serializable {
     private Double valorcompra;
     
     @ManyToOne
-    private TipoProduto tipoproduto;
+    private Tipo tipoproduto;
     
     @ManyToOne
     private Linhasproduto linhaproduto;
     
-    public Produtos(Double valorvenda, Double valorcompra,TipoProduto tipoproduto,Linhasproduto linhaproduto){
+    public Produtos(Double valorvenda, Double valorcompra,Tipo tipoproduto,Linhasproduto linhaproduto){
         this.valorvenda = valorvenda;
         this.valorcompra = valorcompra;
         this.tipoproduto = tipoproduto;
@@ -92,11 +90,11 @@ public class Produtos implements Serializable {
         this.valorcompra = valorcompra;
     }
 
-    public TipoProduto getTipoproduto() {
+    public Tipo getTipoproduto() {
         return tipoproduto;
     }
 
-    public void setTipoproduto(TipoProduto tipoproduto) {
+    public void setTipoproduto(Tipo tipoproduto) {
         this.tipoproduto = tipoproduto;
     }
 
