@@ -6,7 +6,7 @@
 
 package br.edu.ifnmg.tads.TrabalhoLTPIV.Presentation;
 
-import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoprodutoRepositorio;
+import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.ITipoProdutoRepositorio;
 import br.edu.ifnmg.tads.TrabalhoLTPIV.DoMainModel.TipoProduto;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -24,9 +24,9 @@ import javax.faces.convert.Converter;
 public class TipoProdutoConverter implements Serializable, Converter {
 
     /**
-     * Creates a new instance of TipoProdutoConverter
+     * Creates a new instance of TipoProdutoProdutoConverter
      */
-    ITipoprodutoRepositorio dao;
+    ITipoProdutoRepositorio dao;
     
     public TipoProdutoConverter() {
     }

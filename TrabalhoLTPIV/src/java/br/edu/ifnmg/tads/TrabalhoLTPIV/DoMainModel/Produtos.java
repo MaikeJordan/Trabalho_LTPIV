@@ -38,12 +38,12 @@ public class Produtos implements Serializable {
     private Double valorcompra;
     
     @ManyToOne
-    private Tipo tipoproduto;
+    private TipoProduto tipoproduto;
     
     @ManyToOne
     private Linhasproduto linhaproduto;
     
-    public Produtos(Double valorvenda, Double valorcompra,Tipo tipoproduto,Linhasproduto linhaproduto){
+    public Produtos(Double valorvenda, Double valorcompra,TipoProduto tipoproduto,Linhasproduto linhaproduto){
         this.valorvenda = valorvenda;
         this.valorcompra = valorcompra;
         this.tipoproduto = tipoproduto;
@@ -90,11 +90,11 @@ public class Produtos implements Serializable {
         this.valorcompra = valorcompra;
     }
 
-    public Tipo getTipoproduto() {
+    public TipoProduto getTipoproduto() {
         return tipoproduto;
     }
 
-    public void setTipoproduto(Tipo tipoproduto) {
+    public void setTipoproduto(TipoProduto tipoproduto) {
         this.tipoproduto = tipoproduto;
     }
 

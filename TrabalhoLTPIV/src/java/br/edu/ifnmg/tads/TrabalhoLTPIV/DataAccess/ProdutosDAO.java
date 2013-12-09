@@ -43,7 +43,7 @@ public class ProdutosDAO extends DAOGenerico<Produtos> implements IProdutosRepos
                 filtro += " p.nome like '%"+obj.getNome()+"%' ";
                 //parametros.put("nome", obj.getNome());
             }
-            // Tipo
+            // TipoProduto
             
             if (obj.getTipoproduto().getNome() != null && obj.getTipoproduto().getNome().length() > 0) {
                 

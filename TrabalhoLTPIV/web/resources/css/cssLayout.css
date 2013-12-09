@@ -75,3 +75,9 @@ body{
          width: 460px;
          height: 360px;
 }
+.outputLabel{ 
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #AFAFAF;
+
+}
