@@ -33,4 +33,5 @@
     <jdbc-resource enabled="true" jndi-name="dist2" object-type="user" pool-name="mysql_distribuidora_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="dist" object-type="user" pool-name="mysql_distribuidora_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="RedeNorte" object-type="user" pool-name="mysql_distribuidora_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="dist4" object-type="user" pool-name="mysql_distribuidora_rootPool"/>
 </resources>
